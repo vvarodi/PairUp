@@ -6,13 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/main_imageLogo"
+        android:layout_width="305dp"
+        android:layout_height="346dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/logo"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pair_up_logo" />
+
+    <Button
+        android:id="@+id/button_main_login"
+        android:layout_width="317dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/main_rosa"
+        android:text="@string/login"
+        android:textColor="@color/main_skin"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_imageLogo"
+        app:cornerRadius="40dp"
+        app:strokeColor="@color/main_skin"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/button_main_signup"
+        android:layout_width="317dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="84dp"
+        android:backgroundTint="@color/main_skin"
+        android:text="@string/signup"
+        android:textColor="@color/main_rosa_dark"
+        android:textSize="30sp"
+        app:cornerRadius="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_main_login"
+        app:strokeColor="@color/main_rosa"
+        app:strokeWidth="3dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

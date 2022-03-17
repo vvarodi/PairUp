@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">PairUp</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="logo">Logo</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="forgot">Forgot password?</string>
+    <string name="email">Email</string>
+    <string name="email_hint">email@domain.com</string>
 </resources>
