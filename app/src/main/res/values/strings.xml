@@ -9,4 +9,6 @@
     <string name="forgot">Forgot password?</string>
     <string name="email">Email</string>
     <string name="email_hint">email@domain.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
