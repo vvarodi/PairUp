@@ -12,13 +12,14 @@
         android:id="@+id/container"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/button_navigation"
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/button_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu"
+        app:backgroundTint="@color/main_skin_light"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

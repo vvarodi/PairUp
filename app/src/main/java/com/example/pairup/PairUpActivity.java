@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import android.util.Log;
+
 public class PairUpActivity extends AppCompatActivity {
 
     // Initialize all fragments
@@ -17,12 +19,14 @@ public class PairUpActivity extends AppCompatActivity {
     NotificationsFragment notificationFragment = new NotificationsFragment();
     ProfileFragment profileFragment = new ProfileFragment();
 
+    BottomNavigationView Nav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pair_up);
 
-        BottomNavigationView Nav = findViewById(R.id.button_navigation);
+        Nav = findViewById(R.id.bottom_navigation);
 
         // default Home fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
@@ -50,6 +54,16 @@ public class PairUpActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
+    @Override
+    public void onBackPressed(){
+        if (Nav.getSelectedItemId() == R.id.home){
+            //super.onBackPressed();
+            finishAffinity();
+            finish();
+        }else{
+            Nav.setSelectedItemId(R.id.home);
+        }
+    }
+
 }
