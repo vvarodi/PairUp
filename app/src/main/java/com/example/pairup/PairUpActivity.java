@@ -3,6 +3,7 @@ package com.example.pairup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -54,6 +55,7 @@ public class PairUpActivity extends AppCompatActivity {
                 return false;
             }
         });
+
     }
     @Override
     public void onBackPressed(){

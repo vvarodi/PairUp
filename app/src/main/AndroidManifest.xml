@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PairUp">
         <activity
+            android:name=".HostActivity"
+            android:exported="false" />
+        <activity
             android:name=".PairUpActivity"
             android:exported="false" />
         <activity
