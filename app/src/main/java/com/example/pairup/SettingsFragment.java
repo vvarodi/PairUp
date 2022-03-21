@@ -15,4 +15,11 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
+    // https://stackoverflow.com/questions/28389841/change-actionbar-title-using-fragments
+    public void onResume(){
+        super.onResume();
+        ((PairUpActivity) getActivity())
+                .setActionBarTitle("Settings");
+
+    }
 }

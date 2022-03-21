@@ -68,4 +68,9 @@ public class PairUpActivity extends AppCompatActivity {
         }
     }
 
+    // https://stackoverflow.com/questions/28389841/change-actionbar-title-using-fragments
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
+
 }

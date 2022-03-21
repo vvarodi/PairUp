@@ -27,4 +27,12 @@ public class HomeFragment extends Fragment {
         Intent intent = new Intent(getContext() , HostActivity.class);
         startActivity(intent);
     }
+
+    // https://stackoverflow.com/questions/28389841/change-actionbar-title-using-fragments
+    public void onResume(){
+        super.onResume();
+        ((PairUpActivity) getActivity())
+                .setActionBarTitle("Join a meeting");
+
+    }
 }
