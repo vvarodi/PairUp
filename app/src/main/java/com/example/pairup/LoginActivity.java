@@ -1,5 +1,6 @@
 package com.example.pairup;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -40,11 +41,11 @@ public class LoginActivity extends AppCompatActivity {
                     if (userEntity == null){
                         Toast.makeText(LoginActivity.this,"Invalid credentials",Toast.LENGTH_SHORT).show();
                     }else{
-                        openPairUpActivity();
+                        openPairUpActivity(email.getText().toString());
                     }
                 }else if (email.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
                     Toast.makeText(LoginActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
-                    openPairUpActivity();
+                    openPairUpActivity(null);
                 }else{
                     Toast.makeText(LoginActivity.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
                 }
@@ -52,8 +53,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void openPairUpActivity(){
+    public void openPairUpActivity(@Nullable String gmail){
         Intent intent = new Intent(this, PairUpActivity.class);
+        intent.putExtra("GMAIL", gmail);
         startActivity(intent);
     }
 

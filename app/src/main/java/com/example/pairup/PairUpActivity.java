@@ -73,4 +73,9 @@ public class PairUpActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
     }
 
+
+    public String getCurrentUser(){
+        String gmail = getIntent().getStringExtra("GMAIL");
+        return gmail;
+    }
 }

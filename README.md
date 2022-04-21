@@ -22,3 +22,6 @@ SignUp Activity: New Entity + Validation
 
 LoginActivity: 
 1) Set up Login Dao
+
+
+Using Intent to pass user data to activity

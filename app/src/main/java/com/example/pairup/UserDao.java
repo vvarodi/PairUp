@@ -14,4 +14,8 @@ public interface UserDao {
     @Query ("SELECT * from user where gmail=(:gmail) and password=(:password)")
     UserEntity login(String gmail, String password);
 
+    @Query ("SELECT * from user where gmail=(:gmail)")
+    UserEntity getCurrentUser(String gmail);
+
+
 }
