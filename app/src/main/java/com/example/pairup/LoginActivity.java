@@ -11,12 +11,15 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private AppDatabase db;
     EditText email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        db = AppDatabase.getUserDatabase(getApplicationContext());
 
         email = (EditText) findViewById(R.id.login_email);
         password = (EditText) findViewById(R.id.login_password);
@@ -31,25 +34,15 @@ public class LoginActivity extends AppCompatActivity {
                     // Query login
                     AppDatabase appDatabase = AppDatabase.getUserDatabase(getApplicationContext());
                     // Dao Initialization
-                    UserDao userDao = appDatabase.userDao();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            UserEntity userEntity = userDao.login(email.getText().toString(), password.getText().toString());
-                            if (userEntity == null){
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(LoginActivity.this,"Invalid credentials",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }else{
-                                openPairUpActivity();
-                            }
-                        }
-                    }).start();
-                }
-                else if (email.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+                    UserDao userDao = db.userDao();
+
+                    UserEntity userEntity = userDao.login(email.getText().toString(), password.getText().toString());
+                    if (userEntity == null){
+                        Toast.makeText(LoginActivity.this,"Invalid credentials",Toast.LENGTH_SHORT).show();
+                    }else{
+                        openPairUpActivity();
+                    }
+                }else if (email.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
                     Toast.makeText(LoginActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
                     openPairUpActivity();
                 }else{

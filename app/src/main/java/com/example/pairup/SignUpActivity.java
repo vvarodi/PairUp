@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private AppDatabase db;
+
     EditText gmail, password, re_password, name;
     Button register;
 
@@ -18,6 +20,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        db = AppDatabase.getUserDatabase(getApplicationContext());
 
         gmail = findViewById(R.id.signup_gmail);
         password = findViewById(R.id.signup_password);
@@ -38,16 +42,10 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (validateInput(userEntity)) {
                     // Initialize Database
-                    AppDatabase appDatabase = AppDatabase.getUserDatabase(getApplicationContext());
-                    UserDao userDao = appDatabase.userDao();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Register User
-                            userDao.registerUser(userEntity);
 
-                        }
-                    }).start();
+                    UserDao userDao = db.userDao();
+                    userDao.registerUser(userEntity);
+
 
                     openPairUpActivity();
                 }
