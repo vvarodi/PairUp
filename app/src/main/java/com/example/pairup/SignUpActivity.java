@@ -1,5 +1,6 @@
 package com.example.pairup;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -47,15 +48,16 @@ public class SignUpActivity extends AppCompatActivity {
                     userDao.registerUser(userEntity);
 
 
-                    openPairUpActivity();
+                    openPairUpActivity(userEntity.getGmail());
                 }
             }
         });
 
     }
 
-    public void openPairUpActivity(){
+    public void openPairUpActivity(@Nullable String gmail){
         Intent intent = new Intent(this, PairUpActivity.class);
+        intent.putExtra("GMAIL", gmail);
         startActivity(intent);
     }
 

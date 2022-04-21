@@ -25,3 +25,9 @@ LoginActivity:
 
 
 Using Intent to pass user data to activity
+
+
+// To do
+Keep session saved
+Logout
+User gmail already in the database
