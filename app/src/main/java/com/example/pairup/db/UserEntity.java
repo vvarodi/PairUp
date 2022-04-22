@@ -1,4 +1,4 @@
-package com.example.pairup;
+package com.example.pairup.db;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -8,25 +8,25 @@ import androidx.room.PrimaryKey;
 public class UserEntity {
 
     @PrimaryKey(autoGenerate = true)
-    Integer id;
+    public long id;
 
     @ColumnInfo(name = "gmail")
-    String gmail;
+    public String gmail;
 
     @ColumnInfo(name = "password")
-    String password;
+    public String password;
 
     @ColumnInfo(name = "name")
-    String name;
+    public String name;
 
     public UserEntity() {
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

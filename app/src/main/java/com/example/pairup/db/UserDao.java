@@ -1,4 +1,4 @@
-package com.example.pairup;
+package com.example.pairup.db;
 
 
 import androidx.room.Dao;

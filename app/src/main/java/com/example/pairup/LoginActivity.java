@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.pairup.db.AppDatabase;
+import com.example.pairup.db.UserDao;
+import com.example.pairup.db.UserEntity;
+
 public class LoginActivity extends AppCompatActivity {
 
     private AppDatabase db;
@@ -20,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        db = AppDatabase.getUserDatabase(getApplicationContext());
+        db = AppDatabase.getInstance(getApplicationContext());
 
         email = (EditText) findViewById(R.id.login_email);
         password = (EditText) findViewById(R.id.login_password);
@@ -33,19 +37,22 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (validInput(email, password)){
                     // Query login
-                    AppDatabase appDatabase = AppDatabase.getUserDatabase(getApplicationContext());
-                    // Dao Initialization
-                    UserDao userDao = db.userDao();
 
-                    UserEntity userEntity = userDao.login(email.getText().toString(), password.getText().toString());
+                    // Dao Initialization
+
+                    UserEntity userEntity = db.userDao().login(email.getText().toString(), password.getText().toString());
                     if (userEntity == null){
                         Toast.makeText(LoginActivity.this,"Invalid credentials",Toast.LENGTH_SHORT).show();
                     }else{
                         openPairUpActivity(email.getText().toString());
                     }
-                }else if (email.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
-                    Toast.makeText(LoginActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
-                    openPairUpActivity(null);
+
+                    // only for testing
+                    if (email.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+                        Toast.makeText(LoginActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
+                        openPairUpActivity(null);
+                    }
+
                 }else{
                     Toast.makeText(LoginActivity.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
                 }

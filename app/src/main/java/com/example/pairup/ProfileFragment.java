@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.pairup.db.AppDatabase;
+import com.example.pairup.db.UserEntity;
+
 public class ProfileFragment extends Fragment {
 
     private AppDatabase db;
@@ -18,7 +21,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        db = AppDatabase.getUserDatabase(getActivity());
+        db = AppDatabase.getInstance(getActivity());
 
         // Retrieve data passed as intent to PairUpActivity
         PairUpActivity activity = (PairUpActivity) getActivity();
@@ -30,10 +33,6 @@ public class ProfileFragment extends Fragment {
         TextView txtView = (TextView) view.findViewById(R.id.text);
         txtView.setText(user.getName());
 
-
-
-
-
         return view;
     }
 
@@ -42,6 +41,5 @@ public class ProfileFragment extends Fragment {
         super.onResume();
         ((PairUpActivity) getActivity())
                 .setActionBarTitle("Profile");
-
     }
 }

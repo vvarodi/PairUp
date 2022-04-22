@@ -12,6 +12,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import android.util.Log;
 
+
 public class PairUpActivity extends AppCompatActivity {
 
     // Initialize all fragments

@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.pairup.db.AppDatabase;
+import com.example.pairup.db.UserDao;
+import com.example.pairup.db.UserEntity;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private AppDatabase db;
@@ -22,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        db = AppDatabase.getUserDatabase(getApplicationContext());
+        db = AppDatabase.getInstance(getApplicationContext());
 
         gmail = findViewById(R.id.signup_gmail);
         password = findViewById(R.id.signup_password);
@@ -44,11 +48,13 @@ public class SignUpActivity extends AppCompatActivity {
                 if (validateInput(userEntity)) {
                     // Initialize Database
 
-                    UserDao userDao = db.userDao();
-                    userDao.registerUser(userEntity);
-
+                    db.userDao().registerUser(userEntity);
 
                     openPairUpActivity(userEntity.getGmail());
+
+                    // needed ?
+                    setResult(RESULT_OK);
+                    finish();
                 }
             }
         });
