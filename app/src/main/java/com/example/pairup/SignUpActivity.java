@@ -39,18 +39,18 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Creating User Entity
-                UserEntity userEntity = new UserEntity();
+                UserEntity user = new UserEntity();
                 // Initialize User Entity
-                userEntity.setGmail(gmail.getText().toString());
-                userEntity.setPassword(password.getText().toString());
-                userEntity.setName(name.getText().toString());
+                user.setGmail(gmail.getText().toString());
+                user.setPassword(password.getText().toString());
+                user.setName(name.getText().toString());
 
-                if (validateInput(userEntity)) {
+                if (validateInput(user)) {
                     // Initialize Database
 
-                    db.userDao().registerUser(userEntity);
+                    db.userDao().registerUser(user);
 
-                    openPairUpActivity(userEntity.getGmail());
+                    openPairUpActivity(user.getGmail());
 
                     // needed ?
                     setResult(RESULT_OK);
