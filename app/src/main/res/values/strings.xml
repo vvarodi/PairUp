@@ -9,6 +9,13 @@
     <string name="forgot">Forgot password?</string>
     <string name="email">Email</string>
     <string name="email_hint">email@domain.com</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Host activity -->
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
+    <string name="select_location">Select Location</string>
+    <string name="select_language">Select language</string>
+    <string name="select_members">2 or 4?</string>
+
+
+
 </resources>

@@ -31,3 +31,11 @@ Using Intent to pass user data to activity
 Keep session saved
 Logout
 User gmail already in the database
+
+---------------------------------
+From now, scrollable 
+--------------------------------
+
+activity_host.xml
+
+añadir dependencia card view
