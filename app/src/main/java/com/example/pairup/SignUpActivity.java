@@ -28,37 +28,29 @@ public class SignUpActivity extends AppCompatActivity {
 
         db = AppDatabase.getInstance(getApplicationContext());
 
+        name = findViewById(R.id.signup_username);
         gmail = findViewById(R.id.signup_gmail);
         password = findViewById(R.id.signup_password);
         re_password = findViewById(R.id.signup_repeat_password);
-        name = findViewById(R.id.signup_username);
 
-        register = findViewById(R.id.signup_button_signup);
+        findViewById(R.id.signup_button_signup).setOnClickListener(view -> RegisterUser());
+    }
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Creating User Entity
-                UserEntity user = new UserEntity();
-                // Initialize User Entity
-                user.setGmail(gmail.getText().toString());
-                user.setPassword(password.getText().toString());
-                user.setName(name.getText().toString());
+    public void RegisterUser(){
+        UserEntity user = new UserEntity();
+        // Initialize User Entity
+        user.setGmail(gmail.getText().toString());
+        user.setPassword(password.getText().toString());
+        user.setName(name.getText().toString());
 
-                if (validateInput(user)) {
-                    // Initialize Database
+        if (validateInput(user)) {
 
-                    db.userDao().registerUser(user);
+            db.userDao().registerUser(user);
 
-                    openPairUpActivity(user.getGmail());
+            openPairUpActivity(user.getGmail());
 
-                    // needed ?
-                    setResult(RESULT_OK);
-                    finish();
-                }
-            }
-        });
-
+            finish();
+        }
     }
 
     public void openPairUpActivity(@Nullable String gmail){
@@ -137,4 +129,6 @@ public class SignUpActivity extends AppCompatActivity {
             return true;
         }
     }
+
+
 }
