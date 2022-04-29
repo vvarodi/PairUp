@@ -9,6 +9,7 @@
     <string name="forgot">Forgot password?</string>
     <string name="email">Email</string>
     <string name="email_hint">email@domain.com</string>
+    <string name="have_account">Don\'t have an account?</string>
     <!-- Host activity -->
     <string name="select_date">Select Date</string>
     <string name="select_time">Select Time</string>

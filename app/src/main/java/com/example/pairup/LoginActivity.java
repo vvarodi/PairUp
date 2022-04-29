@@ -17,7 +17,7 @@ import com.example.pairup.db.UserEntity;
 public class LoginActivity extends AppCompatActivity {
 
     private AppDatabase db;
-    EditText email, password;
+    EditText gmail, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,38 +26,26 @@ public class LoginActivity extends AppCompatActivity {
 
         db = AppDatabase.getInstance(getApplicationContext());
 
-        email = (EditText) findViewById(R.id.login_email);
+        gmail = (EditText) findViewById(R.id.login_email);
         password = (EditText) findViewById(R.id.login_password);
 
-        Button login = (Button) findViewById(R.id.login_button_login);
+        findViewById(R.id.login_button_login).setOnClickListener(view -> LoginUser());
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    }
 
-                if (validInput(email, password)){
-                    // Query login
+    public void LoginUser(){
+        if (validInput()){
 
-                    // Dao Initialization
-
-                    UserEntity userEntity = db.userDao().login(email.getText().toString(), password.getText().toString());
-                    if (userEntity == null){
-                        Toast.makeText(LoginActivity.this,"Invalid credentials",Toast.LENGTH_SHORT).show();
-                    }else{
-                        openPairUpActivity(email.getText().toString());
-                    }
-
-                    // only for testing
-                    if (email.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
-                        Toast.makeText(LoginActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
-                        openPairUpActivity(null);
-                    }
-
-                }else{
-                    Toast.makeText(LoginActivity.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
-                }
+            UserEntity userEntity = db.userDao().login(gmail.getText().toString(), password.getText().toString());
+            if (userEntity == null){
+                Toast.makeText(LoginActivity.this,"Invalid credentials",Toast.LENGTH_SHORT).show();
+            }else{
+                openPairUpActivity(gmail.getText().toString());
             }
-        });
+
+        }else{
+            Toast.makeText(LoginActivity.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void openPairUpActivity(@Nullable String gmail){
@@ -66,19 +54,21 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public Boolean validInput(EditText gmail, EditText password) {
-
+    public Boolean validInput() {
+        boolean allFine = true;
         if (gmail.getText().toString().isEmpty()) {
-            email.setError("Gmail is empty");
-            return false;
-        } else if (password.getText().toString().isEmpty()) {
-            password.setError("Password is empty");
-            return false;
-        } else {
-            email.setError(null);
-            password.setError(null);
-            return true;
+            gmail.setError("Gmail is empty");
+            allFine = false;
         }
+        if (password.getText().toString().isEmpty()) {
+            password.setError("Password is empty");
+            allFine = false;
+        } else {
+            gmail.setError(null);
+            password.setError(null);
+        }
+        return allFine;
     }
+
 
 }

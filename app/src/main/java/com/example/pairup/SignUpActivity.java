@@ -61,13 +61,21 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private Boolean validateInput(UserEntity userEntity){
-
-        if (!validateName(userEntity) || !validatePassword(userEntity) || !validateRePassword(userEntity) || !validateGmail(userEntity)){
-            Toast.makeText(getApplicationContext(), "Something went wrong. Try again.", Toast.LENGTH_LONG).show();
-            return false;
+        // To show all errors at the same time
+        boolean allFine = true;
+        if (!validateName(userEntity)){
+            allFine = false;
         }
-        return true;
-
+        if (!validatePassword(userEntity)){
+            allFine = false;
+        }
+        if (!validateRePassword(userEntity)){
+            allFine = false;
+        }
+        if (!validateGmail(userEntity)){
+            allFine = false;
+        }
+        return allFine;
     }
 
     private Boolean validateName(UserEntity userEntity){
