@@ -11,10 +11,11 @@
     <string name="email_hint">email@domain.com</string>
     <string name="have_account">Don\'t have an account?</string>
     <!-- Host activity -->
-    <string name="select_date">Select Date</string>
-    <string name="select_time">Select Time</string>
-    <string name="select_location">Select Location</string>
-    <string name="select_language">Select language</string>
+    <string name="choose">"Choose meeting details"</string>
+    <string name="select_date">Date</string>
+    <string name="select_time">Time</string>
+    <string name="select_location">Location</string>
+    <string name="select_language">Language</string>
     <string name="select_members">2 or 4?</string>
 
 

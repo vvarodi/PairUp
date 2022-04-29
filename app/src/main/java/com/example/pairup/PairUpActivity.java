@@ -29,7 +29,7 @@ public class PairUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pair_up);
 
         Nav = findViewById(R.id.bottom_navigation);
-        Nav.setSelectedItemId(R.id.home); 
+        Nav.setSelectedItemId(R.id.home);
         // default Home fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
 

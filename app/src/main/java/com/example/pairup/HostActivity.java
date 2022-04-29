@@ -27,6 +27,7 @@ public class HostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
+        setTitle("Host a new meeting");
 
         db = AppDatabase.getInstance(getApplicationContext());
         new_event = new EventEntity();
@@ -47,8 +48,8 @@ public class HostActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        TextView txtDate = findViewById(R.id.date_show);
-                        txtDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        //TextView txtDate = findViewById(R.id.date_show);
+                        //txtDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
                         // Save as String, reformat when needed
                         new_event.setDay(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
@@ -76,11 +77,12 @@ public class HostActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
-                        TextView txtTime = findViewById(R.id.time_show);
-                        txtTime.setText(hourOfDay + ":" + minute);
+                        //TextView txtTime = findViewById(R.id.time_show);
+                        //txtTime.setText(hourOfDay + ":" + minute);
                     }
                 }, mHour, mMinute, false);
         timePickerDialog.show();
     }
+
 
 }
