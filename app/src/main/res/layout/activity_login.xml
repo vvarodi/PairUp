@@ -77,27 +77,4 @@
         app:strokeColor="@color/main_rosa_dark"
         app:strokeWidth="3dp" />
 
-    <TextView
-        android:id="@+id/have_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/have_account"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button_login"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/signup"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/have_account"
-        app:layout_constraintTop_toTopOf="@+id/have_account" />
 </androidx.constraintlayout.widget.ConstraintLayout>

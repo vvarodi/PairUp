@@ -29,7 +29,7 @@ public class PairUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pair_up);
 
         Nav = findViewById(R.id.bottom_navigation);
-
+        Nav.setSelectedItemId(R.id.home); 
         // default Home fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
 
@@ -43,10 +43,6 @@ public class PairUpActivity extends AppCompatActivity {
 
                     case R.id.settings:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,settingsFragment).commit();
-                        return true;
-
-                    case R.id.notification:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,notificationFragment).commit();
                         return true;
 
                     case R.id.profile:
