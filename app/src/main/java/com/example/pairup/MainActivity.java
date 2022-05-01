@@ -1,26 +1,43 @@
 package com.example.pairup;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+/**
+ * MainActivity: First Activity and Window when you open the App
+ * Contains: Logo + Login Button + SignUp Button
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Initialize MainActivity. Creates a window where we can place our
+     * Main Page UI with setContentView(view)
+     * @param savedInstanceState: Bundle reference
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Retrieve with findViewById(int) the buttons from our UI to interact with
         findViewById(R.id.button_main_login).setOnClickListener(view -> openLoginActivity());
         findViewById(R.id.button_main_signup).setOnClickListener(view -> openSignUpActivity());
     }
 
+    /**
+     * Open LoginActivity when user clicks on Login Button
+     */
     public void openLoginActivity(){
         Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        // Intent describes the activity to be executed
+        startActivity(intent); // Start new activity
     }
+
+    /**
+     * Open SignUpActivity when user clicks SignUp Button
+     */
     public void openSignUpActivity(){
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);

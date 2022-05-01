@@ -1,4 +1,5 @@
 <resources>
+    <!-- Main Activity. Login Activity. SignUp Activity -->
     <string name="app_name">PairUp</string>
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
@@ -6,10 +7,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="repeat_password">Repeat Password</string>
-    <string name="forgot">Forgot password?</string>
     <string name="email">Email</string>
     <string name="email_hint">email@domain.com</string>
-    <string name="have_account">Don\'t have an account?</string>
+
     <!-- Host activity -->
     <string name="choose">"Choose meeting details"</string>
     <string name="select_date">Date</string>
@@ -17,7 +17,5 @@
     <string name="select_location">Location</string>
     <string name="select_language">Language</string>
     <string name="select_members">2 or 4?</string>
-
-
 
 </resources>

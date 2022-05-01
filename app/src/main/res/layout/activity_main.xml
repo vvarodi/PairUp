@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <ImageView
         android:id="@+id/main_imageLogo"
         android:layout_width="305dp"
@@ -51,6 +50,5 @@
         app:layout_constraintTop_toTopOf="@+id/button_main_login"
         app:strokeColor="@color/main_rosa"
         app:strokeWidth="3dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

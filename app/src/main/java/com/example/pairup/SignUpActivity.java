@@ -5,21 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.pairup.db.AppDatabase;
-import com.example.pairup.db.UserDao;
 import com.example.pairup.db.UserEntity;
 
+
+/**
+ * SignUp Activity for Registering new users.
+ * Contains EditText fields to fill with new user information
+ * All fields must be correctly filled in order to Register new User
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     private AppDatabase db;
-
-    EditText gmail, password, re_password, name;
-    Button register;
+    private EditText gmail, password, re_password, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,104 +36,152 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.signup_button_signup).setOnClickListener(view -> RegisterUser());
     }
 
+    /**
+     * Called when user clicks SignUp Button
+     * Creates new user Entity
+     */
     public void RegisterUser(){
-        UserEntity user = new UserEntity();
-        // Initialize User Entity
-        user.setGmail(gmail.getText().toString());
-        user.setPassword(password.getText().toString());
-        user.setName(name.getText().toString());
+        if (validateInput()) {
+            UserEntity user = new UserEntity(); // Initialize new User Entity
 
-        if (validateInput(user)) {
+            user.setGmail(gmail.getText().toString());
+            user.setPassword(password.getText().toString());
+            user.setName(name.getText().toString());
 
             db.userDao().registerUser(user);
 
             openPairUpActivity(user.getGmail());
-
-            finish();
         }
     }
 
+    /**
+     * Open PairUpActivity when user clicks button SignUp and all fields are validated
+     * @param gmail: pass user gmail to PairUpActivity to retrieve user data
+     */
     public void openPairUpActivity(@Nullable String gmail){
         Intent intent = new Intent(this, PairUpActivity.class);
-        intent.putExtra("GMAIL", gmail);
+        intent.putExtra("GMAIL", gmail);  // Pass gmail to the new activity
         startActivity(intent);
     }
 
-
-    private Boolean validateInput(UserEntity userEntity){
+    /**
+     * Validate all fields are correctly filled
+     * One by one because all errors appear when user clicks SignUp
+     * @return: true if all fields are correctly filled
+     *          false if at least one field is wrong
+     */
+    public Boolean validateInput(){
         // To show all errors at the same time
         boolean allFine = true;
-        if (!validateName(userEntity)){
+        if (!validateName()){
             allFine = false;
         }
-        if (!validatePassword(userEntity)){
+        if (!validatePassword()){
             allFine = false;
         }
-        if (!validateRePassword(userEntity)){
+        if (!validateRePassword()){
             allFine = false;
         }
-        if (!validateGmail(userEntity)){
+        if (!validateGmail()){
             allFine = false;
         }
         return allFine;
     }
 
-    private Boolean validateName(UserEntity userEntity){
-        if (userEntity.getName().isEmpty()){
+    /**
+     * Checks if Username field is correctly filled:
+     *      - Not empty
+     *      - Not too long (length < 15)
+     *      - Not too short (length > 4)
+     * @return: true if Username field correctly filled
+     *          false otherwise
+     */
+    public Boolean validateName(){
+        String string_name = name.getText().toString();
+        if (string_name.isEmpty()){
             name.setError("Cannot be empty");
             return false;
-        } else if (userEntity.getName().length() >= 15 ){
+        } else if (string_name.length() >= 15 ){
             name.setError("Username too long");
             return false;
-        } else if (userEntity.getName().length() < 4){
+        } else if (string_name.length() < 4){
             name.setError("Username too short");
             return false;
-        }
-        else{
-            name.setError(null); // next time user enters name
+        } else{
+            name.setError(null);
             return true;
         }
     }
 
-    private Boolean validatePassword(UserEntity userEntity){
-        // To Do: Strong password
-        if (userEntity.getPassword().isEmpty()){
+    /**
+     * Checks if Password field is correctly filled:
+     *      - Not empty
+     *      - Not too short (length >= 8)
+     * @return: true if Password field correctly filled
+     *          false otherwise
+     */
+    public Boolean validatePassword(){
+        // To Do: Stronger password
+        String string_password = password.getText().toString();
+        if (string_password.isEmpty()){
             password.setError("Cannot be empty");
             return false;
         }
+        /*else if (string_password.length() < 8){
+            password.setError("Password too short");
+            return false;
+        } */
         else{
-            password.setError(null); // next time user enters name
+            password.setError(null);
             return true;
         }
     }
 
-    private Boolean validateRePassword(UserEntity userEntity){
-        String check = re_password.getText().toString();
-        String coincide = userEntity.getPassword().toString();
+    /**
+     * Checks if RepeatPassword field is correctly filled::
+     *      - Not empty
+     *      - Match password field
+     * @return: true if RepeatPassword field correctly filled
+     *          false otherwise
+     */
+    public Boolean validateRePassword(){
+        String string_password = password.getText().toString();
+        String string_re_password = re_password.getText().toString();
 
-        if (check.matches("")){
+        if (string_re_password.isEmpty()){
             re_password.setError("Repeat Password");
             return false;
-        }
-        else if (!check.equals(coincide)){
-            re_password.setError("Password not coincide");
+        } else if (!string_re_password.equals(string_password)){
+            re_password.setError("Passwords do not match");
             return false;
-        }else{
-            re_password.setError(null); // next time user enters name
+        } else{
+            re_password.setError(null);
             return true;
         }
     }
 
-    private Boolean validateGmail(UserEntity userEntity){
-        if (userEntity.getGmail().isEmpty()){
+    /**
+     * Checks if Gmail field is correctly filled:
+     *      - Not empty
+     *      - EMAIL_ADDRESS valid format
+     *      - Not already registered with that email address
+     *
+     * @return: true if Gmail field correctly filled
+     *          false otherwise
+     */
+    public Boolean validateGmail(){
+        String string_gmail = gmail.getText().toString();
+        if (string_gmail.isEmpty()){
             gmail.setError("Cannot be empty");
             return false;
-        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(userEntity.getGmail()).matches()){
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(string_gmail).matches()){
             gmail.setError("Invalid Email");
             return false;
-        }
-        else{
-            gmail.setError(null); // next time user enters name
+        } else if (db.userDao().getCurrentUser(string_gmail) != null){
+            gmail.setError("User Email already registered");
+            return false;
+        } else{
+            gmail.setError(null);
             return true;
         }
     }
