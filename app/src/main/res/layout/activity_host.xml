@@ -92,7 +92,7 @@
                 android:layout_width="320dp"
                 android:layout_height="74dp"
                 android:layout_marginTop="18dp"
-                app:checkedButton="@+id/two"
+                app:checkedButton="@+id/four"
                 app:layout_constraintEnd_toEndOf="@id/button_language"
                 app:layout_constraintHorizontal_bias="0.529"
                 app:layout_constraintStart_toStartOf="@id/button_location"
@@ -116,6 +116,17 @@
                     android:drawableRight="@drawable/ic_baseline_people_24"
                     android:text="4" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <include
+                android:id="@+id/card_layout"
+                layout="@layout/event_card_view"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toggle_members" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

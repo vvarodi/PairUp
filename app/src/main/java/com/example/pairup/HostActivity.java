@@ -18,6 +18,9 @@ import com.example.pairup.db.EventEntity;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * HostActivity for creating new Events
+ */
 public class HostActivity extends AppCompatActivity {
 
     private AppDatabase db;
@@ -48,16 +51,13 @@ public class HostActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        //TextView txtDate = findViewById(R.id.date_show);
-                        //txtDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        TextView txtDate = findViewById(R.id.Date);
+                        txtDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
                         // Save as String, reformat when needed
                         new_event.setDay(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                         new_event.setTitle(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
-                        db.eventDao().NewEvent(new_event);
-                        setResult(RESULT_OK);
-                        finish();
 
                     }
                 }, mYear, mMonth, mDay);

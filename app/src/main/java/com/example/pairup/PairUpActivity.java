@@ -1,16 +1,13 @@
 package com.example.pairup;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
-import android.util.Log;
 
 
 public class PairUpActivity extends AppCompatActivity {
@@ -18,7 +15,6 @@ public class PairUpActivity extends AppCompatActivity {
     // Initialize all fragments
     HomeFragment homeFragment = new HomeFragment();
     SettingsFragment settingsFragment = new SettingsFragment();
-    NotificationsFragment notificationFragment = new NotificationsFragment();
     ProfileFragment profileFragment = new ProfileFragment();
 
     BottomNavigationView Nav;
