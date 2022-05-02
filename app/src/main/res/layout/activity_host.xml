@@ -84,6 +84,7 @@
                 android:drawablePadding="1dp"
                 android:text="@string/select_language"
                 android:textSize="13dp"
+                android:onClick="languagePicker"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button_time" />
 
@@ -121,7 +122,7 @@
                 android:id="@+id/card_layout"
                 layout="@layout/event_card_view"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="240dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -2,8 +2,10 @@ package com.example.pairup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +37,9 @@ public class HostActivity extends AppCompatActivity {
         db = AppDatabase.getInstance(getApplicationContext());
         new_event = new EventEntity();
 
-
+        Button saveButton = (Button)findViewById(R.id.button_join);
+        saveButton.setText("Save");
+        //saveButton.setOnClickListener(view -> saveEvent());
 
     }
 
@@ -56,12 +60,8 @@ public class HostActivity extends AppCompatActivity {
 
                         // Save as String, reformat when needed
                         new_event.setDay(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        new_event.setTitle(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-
-
                     }
                 }, mYear, mMonth, mDay);
-
         // Not showing past dates
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         datePickerDialog.show();
@@ -77,11 +77,32 @@ public class HostActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
-                        //TextView txtTime = findViewById(R.id.time_show);
-                        //txtTime.setText(hourOfDay + ":" + minute);
+                        TextView txtTime = findViewById(R.id.Time);
+                        txtTime.setText(hourOfDay + ":" + minute);
+
+                        //new_event.setTime(hourOfDay + ":" + minute);
                     }
                 }, mHour, mMinute, false);
         timePickerDialog.show();
+    }
+
+    public void languagePicker(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        String[] languages = {"Italian", "French", "English", "Spanish", "Portuguese", "Japanese","Mandarin", "Russian", "Arabic", "Dutch"};
+
+        TextView txtLanguage = findViewById(R.id.Language);
+
+
+        builder.setItems(languages, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                txtLanguage.setText(languages[i]);
+            }
+        });
+        // Create and show the Alert Dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 
