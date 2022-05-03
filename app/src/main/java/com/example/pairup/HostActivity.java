@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,12 @@ public class HostActivity extends AppCompatActivity {
         saveButton.setText("Save");
         //saveButton.setOnClickListener(view -> saveEvent());
 
+        findViewById(R.id.button_location).setOnClickListener(view -> openMapsActivity());
+    }
+
+    private void openMapsActivity() {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
     }
 
 
