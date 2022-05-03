@@ -21,6 +21,11 @@
     <string name="select_language">Language</string>
     <string name="join">Join</string>
 
+    <!-- MapsActivity -->
+    <string name="click_location">Click Location</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+
 
 
 

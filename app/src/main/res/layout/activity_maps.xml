@@ -10,5 +10,34 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="550dp" />
+
+    <TextView
+        android:id="@+id/text_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/click_location"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+        <Button
+            android:id="@+id/cancel"
+            android:text="@string/cancel"
+            android:layout_width = "wrap_content"
+            android:layout_height = "80dp"
+            android:layout_weight=".50"
+            android:backgroundTint="@color/main_skin_card"/>
+        <Button
+            android:id="@+id/save"
+            android:text="@string/save"
+            android:layout_width = "wrap_content"
+            android:layout_height = "80dp"
+            android:layout_weight=".50" />
+
+    </LinearLayout>
 </LinearLayout>
