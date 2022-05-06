@@ -20,6 +20,8 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private AppDatabase db;
+    RecyclerView recyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class HomeFragment extends Fragment {
 
         List<EventEntity> allEvents= db.eventDao().getAllEvents();
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+        recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -57,5 +59,16 @@ public class HomeFragment extends Fragment {
         ((PairUpActivity) getActivity())
                 .setActionBarTitle("Join a meeting");
 
+        List<EventEntity> allEvents= db.eventDao().getAllEvents();
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        EventAdapter adapter = new EventAdapter(allEvents, getActivity());
+        recyclerView.setAdapter(adapter);
+
+
     }
+
+
 }

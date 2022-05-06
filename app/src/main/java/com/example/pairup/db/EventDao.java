@@ -12,7 +12,7 @@ public interface EventDao {
     @Insert
     void NewEvent(EventEntity EventEntity);
 
-    @Query("SELECT * FROM event ORDER BY strftime('%d/%m/%Y', day) DESC")
+    @Query("SELECT * FROM event ORDER BY substr(day,7,4)||substr(day,4,2)||substr(day,1,2)")
     List<EventEntity> getAllEvents();
 
 }

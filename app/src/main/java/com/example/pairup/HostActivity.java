@@ -75,19 +75,14 @@ public class HostActivity extends AppCompatActivity {
     }
 
     private void saveEvent() {
+        if (address == null || date == null || time == null || language == null){
 
-        new_event.setFull(false);
-        db.eventDao().NewEvent(new_event);
-        finish();
-
-        /*
-        if (address != null && date != null && time != null && language != null){
+            Toast.makeText(this, "Empty field", Toast.LENGTH_LONG).show();
+        } else {
             new_event.setFull(false);
             db.eventDao().NewEvent(new_event);
             finish();
-        } else {
-            Toast.makeText(this, "Empty field", Toast.LENGTH_LONG).show();
-        }*/
+        }
 
     }
 
@@ -116,13 +111,28 @@ public class HostActivity extends AppCompatActivity {
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
+                        String day, month;
                         TextView txtDate = findViewById(R.id.Date);
-                        date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+
+                        if (dayOfMonth < 10){
+                            day = "0" + dayOfMonth;
+                        } else {
+                            day = "" + dayOfMonth;
+                        }
+
+                        if ((monthOfYear + 1) < 10){
+                            month = "0" + (monthOfYear + 1);
+                        } else {
+                            month = "" + (monthOfYear + 1);
+                        }
+
+                        date = day + "/" + month + "/" + year;
                         txtDate.setText(date);
 
                         // Save as String, reformat when needed
