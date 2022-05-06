@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
      * @param gmail: pass user gmail to PairUpActivity to retrieve user data
      */
     public void openPairUpActivity(@Nullable String gmail){
-        Intent intent = new Intent(this, PairUpActivity.class);
+        Intent intent = new Intent(this, SignupCustomizeActivity.class);
         intent.putExtra("GMAIL", gmail);  // Pass gmail to the new activity
         startActivity(intent);
     }

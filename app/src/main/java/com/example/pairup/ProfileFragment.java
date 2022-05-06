@@ -2,11 +2,14 @@ package com.example.pairup;
 
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import 	android.graphics.Color;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pairup.db.AppDatabase;
@@ -15,6 +18,8 @@ import com.example.pairup.db.UserEntity;
 public class ProfileFragment extends Fragment {
 
     private AppDatabase db;
+
+    ImageView imageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,9 +34,18 @@ public class ProfileFragment extends Fragment {
 
         UserEntity user = db.userDao().getCurrentUser(email);
 
+        //imageView = (ImageView) view.findViewById(R.id.profile_avatar);
 
-        TextView txtView = (TextView) view.findViewById(R.id.text);
+        TextView txtView = (TextView) view.findViewById(R.id.profile_username);
         txtView.setText(user.getName());
+
+        TextView txtView2 = (TextView) view.findViewById(R.id.profile_biography);
+        txtView2.setText(user.getBiography());
+
+        TextView txtView3 = (TextView) view.findViewById(R.id.profile_languages);
+        txtView3.setText(user.getLanguages());
+
+        //imageView.setColorFilter(Color.parseColor(user.getColor()));
 
         return view;
     }

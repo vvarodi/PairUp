@@ -19,6 +19,15 @@ public class UserEntity {
     @ColumnInfo(name = "name")
     public String name;
 
+    @ColumnInfo(name = "biography")
+    public String biography;
+
+    @ColumnInfo(name = "languages")
+    public String languages;
+
+    @ColumnInfo(name = "color")
+    public String color;
+
     public UserEntity() {
     }
 
@@ -53,4 +62,20 @@ public class UserEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getBiography() { return biography; }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public String getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String languages) { this.languages = languages; }
+
+    public String getColor() { return color; }
+
+    public void setColor(String color) { this.color = color; }
 }

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_rosa"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    tools:context=".SignupCustomizeActivity">
+
+    <TextView
+        android:id="@+id/customize_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/customize"
+        android:textAlignment="center"
+        android:textColor="#F1C09B"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_person_24"
+        app:layout_constraintBottom_toTopOf="@+id/customize_biography"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customize_text" />
+
+    <Button
+        android:id="@+id/choose_color"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="7dp"
+        android:backgroundTint="#F1C09B"
+        android:text="@string/choose_color"
+        android:textAlignment="center"
+        android:textColor="@color/main_rosa_dark"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/customize_biography"
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toBottomOf="@+id/customize_text"
+        app:layout_constraintVertical_bias="0.666"
+        app:strokeColor="@color/main_rosa_dark"
+        app:strokeWidth="3dp" />
+
+    <EditText
+        android:id="@+id/customize_biography"
+        android:layout_width="360dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:background="#30ffffff"
+        android:ems="10"
+        android:hint="@string/write_biography"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/main_skin"
+        android:drawableStart="@drawable/ic_baseline_biography_24"
+        android:drawablePadding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <EditText
+        android:id="@+id/customize_languages"
+        android:layout_width="360dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:background="#30ffffff"
+        android:drawableStart="@drawable/ic_baseline_language_24"
+        android:drawablePadding="20dp"
+        android:ems="10"
+        android:hint="@string/write_language_learning"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/main_skin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customize_biography" />
+
+
+    <Button
+        android:id="@+id/customize_skip"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#30ffffff"
+        android:text="@string/skip"
+        android:textAlignment="center"
+        android:textColor="@color/main_rosa_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customize_languages"
+        app:strokeColor="@color/main_rosa_dark"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/customize_save"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#F1C09B"
+        android:text="@string/save"
+        android:textAlignment="center"
+        android:textColor="@color/main_rosa_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.859"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customize_languages"
+        app:strokeColor="@color/main_rosa_dark"
+        app:strokeWidth="3dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

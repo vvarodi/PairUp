@@ -26,6 +26,17 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
 
+    <!-- Profile activity -->
+    <string name="write_biography">Biography</string>
+    <string name="edit_biography">EDIT BIOGRAPHY</string>
+    <string name="write_language_learning">Languages learning</string>
+    <string name="edit_languages">EDIT LANGUAGES</string>
+    <!-- Customize activity -->
+    <string name="customize">Customize your profile</string>
+    <string name="skip">SKIP</string>
+    <string name="choose_color">CHOOSE AVATAR COLOR</string>
+    <string name="save_color">SAVE COLOR</string>
+
 
 
 
