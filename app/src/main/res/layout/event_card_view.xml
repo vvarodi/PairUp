@@ -5,7 +5,9 @@
     android:layout_width="350dp"
     android:layout_height="240dp"
     android:backgroundTint="@color/main_skin_card"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
