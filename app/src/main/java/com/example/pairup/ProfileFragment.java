@@ -34,7 +34,7 @@ public class ProfileFragment extends Fragment {
 
         UserEntity user = db.userDao().getCurrentUser(email);
 
-        //imageView = (ImageView) view.findViewById(R.id.profile_avatar);
+        imageView = (ImageView) view.findViewById(R.id.profile_avatar);
 
         TextView txtView = (TextView) view.findViewById(R.id.profile_username);
         txtView.setText(user.getName());
@@ -43,9 +43,9 @@ public class ProfileFragment extends Fragment {
         txtView2.setText(user.getBiography());
 
         TextView txtView3 = (TextView) view.findViewById(R.id.profile_languages);
-        txtView3.setText(user.getLanguages());
+        txtView3.setText(user.getLanguages().toString());
 
-        //imageView.setColorFilter(Color.parseColor(user.getColor()));
+        imageView.setColorFilter(Color.parseColor(user.getColor()));
 
         return view;
     }

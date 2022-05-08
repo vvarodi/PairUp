@@ -40,14 +40,14 @@ public class SignUpActivity extends AppCompatActivity {
      * Called when user clicks SignUp Button
      * Creates new user Entity
      */
-    public void RegisterUser(){
+    private void RegisterUser(){
         if (validateInput()) {
             UserEntity user = new UserEntity(); // Initialize new User Entity
 
             user.setGmail(gmail.getText().toString());
             user.setPassword(password.getText().toString());
             user.setName(name.getText().toString());
-            user.setColor("#FF9A72");
+            user.setColor("#FF9A72"); // Default profile avatar color
 
             db.userDao().registerUser(user);
 
@@ -59,10 +59,11 @@ public class SignUpActivity extends AppCompatActivity {
      * Open PairUpActivity when user clicks button SignUp and all fields are validated
      * @param gmail: pass user gmail to PairUpActivity to retrieve user data
      */
-    public void openPairUpActivity(@Nullable String gmail){
+    private void openPairUpActivity(@Nullable String gmail){
         Intent intent = new Intent(this, SignupCustomizeActivity.class);
         intent.putExtra("GMAIL", gmail);  // Pass gmail to the new activity
         startActivity(intent);
+        finish();
     }
 
     /**
@@ -71,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
      * @return: true if all fields are correctly filled
      *          false if at least one field is wrong
      */
-    public Boolean validateInput(){
+    private Boolean validateInput(){
         // To show all errors at the same time
         boolean allFine = true;
         if (!validateName()){
@@ -97,7 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
      * @return: true if Username field correctly filled
      *          false otherwise
      */
-    public Boolean validateName(){
+    private Boolean validateName(){
         String string_name = name.getText().toString();
         if (string_name.isEmpty()){
             name.setError("Cannot be empty");
@@ -121,7 +122,7 @@ public class SignUpActivity extends AppCompatActivity {
      * @return: true if Password field correctly filled
      *          false otherwise
      */
-    public Boolean validatePassword(){
+    private Boolean validatePassword(){
         // To Do: Stronger password
         String string_password = password.getText().toString();
         if (string_password.isEmpty()){
@@ -145,7 +146,7 @@ public class SignUpActivity extends AppCompatActivity {
      * @return: true if RepeatPassword field correctly filled
      *          false otherwise
      */
-    public Boolean validateRePassword(){
+    private Boolean validateRePassword(){
         String string_password = password.getText().toString();
         String string_re_password = re_password.getText().toString();
 
@@ -170,7 +171,7 @@ public class SignUpActivity extends AppCompatActivity {
      * @return: true if Gmail field correctly filled
      *          false otherwise
      */
-    public Boolean validateGmail(){
+    private Boolean validateGmail(){
         String string_gmail = gmail.getText().toString();
         if (string_gmail.isEmpty()){
             gmail.setError("Cannot be empty");

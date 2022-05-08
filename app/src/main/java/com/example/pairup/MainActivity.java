@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Open LoginActivity when user clicks on Login Button
      */
-    public void openLoginActivity(){
+    private void openLoginActivity(){
         Intent intent = new Intent(this, LoginActivity.class);
         // Intent describes the activity to be executed
         startActivity(intent); // Start new activity
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Open SignUpActivity when user clicks SignUp Button
      */
-    public void openSignUpActivity(){
+    private void openSignUpActivity(){
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }

@@ -25,9 +25,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Display PairUp icon ToolBar
-        //getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_logo);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        /*
+        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_logo);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        */
         db = AppDatabase.getInstance(getApplicationContext());
 
         gmail = findViewById(R.id.login_email);
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
      *      - User Authorized: (User registered) Open PairUpActivity
      *      - Not authorized: (User credentials not in the DataBase) Inform with Toast Invalid Credentials
      */
-    public void LoginUser(){
+    private void LoginUser(){
         if (validInput()){
 
             UserEntity userEntity = db.userDao().login(gmail.getText().toString(), password.getText().toString());
@@ -60,10 +61,11 @@ public class LoginActivity extends AppCompatActivity {
      * Open PairUpActivity if Login credentials (gmail and password) are correct
      * @param gmail: pass user gmail to PairUpActivity to retrieve user data
      */
-    public void openPairUpActivity(@Nullable String gmail){
+    private void openPairUpActivity(String gmail){
         Intent intent = new Intent(this, PairUpActivity.class);
         intent.putExtra("GMAIL", gmail);
         startActivity(intent);
+        finish();
     }
 
     /**
@@ -73,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
      * @return true if all fields are filled
      *         false if at least one field is empty
      */
-    public Boolean validInput() {
+    private Boolean validInput() {
         boolean allFine = true;
         if (gmail.getText().toString().isEmpty()) {
             gmail.setError("Gmail is empty");
