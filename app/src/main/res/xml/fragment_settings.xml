@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:icon="@drawable/ic_baseline_notifications_24"
+        app:title="@string/notifications">
+
+        <SwitchPreferenceCompat
+            app:key="notifications"
+            app:title="@string/disable_notifications"
+            app:summaryOn="You will no longer receive notifications"
+            app:summaryOff="You will receive notifications of events 2 hours before"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            app:title="@string/edit_profile"
+            app:icon="@drawable/ic_baseline_edit_24">
+
+        <EditTextPreference
+            app:key="@+id/edit_username"
+            app:title="@string/edit_username"
+            app:summary="Click here to change your username"/>
+
+        <Preference
+            app:key="edit_biography"
+            app:title="@string/edit_bio"
+            app:summary="Click here to edit your biography"/>
+
+        <Preference
+            app:key="edit_languages"
+            app:title="@string/edit_languages"
+            app:summary="Click here to modify your languages"/>
+            <!--app:entries="@array/entries"
+            app:entryValues="@array/entry_values"-->
+
+        <Preference
+            app:key="edit_color"
+            app:title="@string/edit_color"
+            app:summary="Click here to change the color of your avatar"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/change_language"
+        app:icon="@drawable/ic_baseline_translate_24">
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/logout"
+        app:icon="@drawable/ic_baseline_logout_24">
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/about_us"
+        app:icon="@drawable/ic_baseline_aboutus">
+    </PreferenceCategory>
+
+</PreferenceScreen>
+
+
+
+<!--<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsFragment"
+    app:allowDividerAbove="true"
+    app:allowDividerBelow="true">
+
+    <SwitchPreferenceCompat
+        android:key="notifications"
+        android:title="Enable message notifications"
+        android:summary="You will receive a notification 2 hours before your event" />
+
+    <EditTextPreference
+        android:key="change_username"
+        android:title="Change username"
+        android:summary="Click here to change your username"/>
+
+    <EditTextPreference
+        android:key="edit_biography"
+        android:title="Edit biography"
+        android:summary="Click here to edit your biography"/>
+
+    <EditTextPreference
+        android:key="edit_languages"
+        android:title="Edit languages"
+        android:summary="Click here to modify your languages"/>
+
+    <EditTextPreference
+        android:key="edit_color"
+        android:title="Change avatar color"
+        android:summary="Click here to change the color of your avatar"/>
+
+    <Preference
+        android:key="change_app_language"
+        android:title="Select app language"
+        android:summary="Click here to select the app language"/>
+
+    <Preference
+        android:key="logout"
+        android:title="Log out"/>
+
+</PreferenceScreen>-->

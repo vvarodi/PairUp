@@ -29,5 +29,8 @@ public interface UserDao {
     @Query ("UPDATE user SET color=:new_color where id_user=(:id)")
     void updateColor(Long id, String new_color);
 
+    @Query ("UPDATE user SET name=:new_name where gmail=(:gmail)")
+    void updateUsername(String gmail, String new_name);
+
 
 }
