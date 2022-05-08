@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".SettingsFragment">
 
-
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="213dp"
+        android:layout_height="174dp"
+        android:text="Button" />
 
 </FrameLayout>

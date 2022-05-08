@@ -3,6 +3,7 @@ package com.example.pairup;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -32,6 +33,13 @@ public class PairUpActivity extends AppCompatActivity {
         Nav.setSelectedItemId(R.id.home);
         // default Home fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+
+        SharedPreferences mPrefs = getSharedPreferences("prefs", 0);
+        SharedPreferences.Editor editor = mPrefs.edit();
+        String gmail = getIntent().getStringExtra("GMAIL");
+        editor.putString("EMAIL", gmail);
+        editor.apply();
+
 
         Nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

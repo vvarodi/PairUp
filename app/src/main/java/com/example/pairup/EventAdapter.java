@@ -1,6 +1,9 @@
 package com.example.pairup;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +14,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.EventEntity;
+import com.example.pairup.db.Reservation;
+import com.example.pairup.db.UserEntity;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
@@ -75,7 +81,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             language.setText(item.language);
             String join_id = "join" + item.id_event;
             Log.d("assert", join_id);
-            join.setId((int)item.id_event);
+            join.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(context, EventInfoActivity.class);
+
+                    context.startActivity(intent);
+
+                }
+            });
         }
     }
 

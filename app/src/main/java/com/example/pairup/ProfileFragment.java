@@ -1,5 +1,6 @@
 package com.example.pairup;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -29,10 +30,9 @@ public class ProfileFragment extends Fragment {
         db = AppDatabase.getInstance(getActivity());
 
         // Retrieve data passed as intent to PairUpActivity
-        PairUpActivity activity = (PairUpActivity) getActivity();
-        String email = activity.getCurrentUser();
-
-        UserEntity user = db.userDao().getCurrentUser(email);
+        SharedPreferences prefs = getContext().getSharedPreferences("prefs", getContext().MODE_PRIVATE);
+        int id = prefs.getInt("ID", 0);
+        UserEntity user = db.userDao().getCurrentUserById((long)id);
 
         imageView = (ImageView) view.findViewById(R.id.profile_avatar);
 

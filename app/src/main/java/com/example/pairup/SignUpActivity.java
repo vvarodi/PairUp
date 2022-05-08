@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
 
@@ -59,7 +60,12 @@ public class SignUpActivity extends AppCompatActivity {
      * Open PairUpActivity when user clicks button SignUp and all fields are validated
      * @param gmail: pass user gmail to PairUpActivity to retrieve user data
      */
-    private void openPairUpActivity(@Nullable String gmail){
+    private void openPairUpActivity(String gmail){
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        prefs.edit().putBoolean("LOGGED", true).apply();
+        UserEntity current_user = db.userDao().getCurrentUser(gmail);
+        prefs.edit().putInt("ID", (int)current_user.getId_user()).apply();
+
         Intent intent = new Intent(this, SignupCustomizeActivity.class);
         intent.putExtra("GMAIL", gmail);  // Pass gmail to the new activity
         startActivity(intent);

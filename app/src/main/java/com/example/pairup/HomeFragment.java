@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.EventEntity;
+import com.example.pairup.db.Reservation;
 import com.example.pairup.db.UserEntity;
 
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ public class HomeFragment extends Fragment {
 
     private AppDatabase db;
     RecyclerView recyclerView;
+    String email;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,8 +50,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
+        // Retrieve data passed as intent to PairUpActivity
+        PairUpActivity activity = (PairUpActivity) getActivity();
+        email = activity.getCurrentUser();
 
     }
+
 
     public void openHostActivity(){
         PairUpActivity activity = (PairUpActivity) getActivity();

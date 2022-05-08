@@ -3,6 +3,7 @@ package com.example.pairup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 /**
@@ -21,9 +22,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        if (prefs.getBoolean("LOGGED", false)){
+            openPairUpActivity();
+        }
+
         // Retrieve with findViewById(int) the buttons from our UI to interact with
         findViewById(R.id.button_main_login).setOnClickListener(view -> openLoginActivity());
         findViewById(R.id.button_main_signup).setOnClickListener(view -> openSignUpActivity());
+    }
+
+    /**
+     * Open PairUpActivity when user was already logged
+     */
+    private void openPairUpActivity() {
+        Intent intent = new Intent(this, PairUpActivity.class);
+        startActivity(intent);
     }
 
     /**

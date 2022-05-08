@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -62,6 +63,11 @@ public class LoginActivity extends AppCompatActivity {
      * @param gmail: pass user gmail to PairUpActivity to retrieve user data
      */
     private void openPairUpActivity(String gmail){
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        prefs.edit().putBoolean("LOGGED", true).apply();
+        UserEntity current_user = db.userDao().getCurrentUser(gmail);
+        prefs.edit().putInt("ID", (int)current_user.getId_user()).apply();
+
         Intent intent = new Intent(this, PairUpActivity.class);
         intent.putExtra("GMAIL", gmail);
         startActivity(intent);

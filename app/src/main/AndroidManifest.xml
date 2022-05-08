@@ -20,6 +20,9 @@
 
 
         <activity
+            android:name=".EventInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignupCustomizeActivity"
             android:exported="false" />
         <activity
