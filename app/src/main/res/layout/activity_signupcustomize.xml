@@ -31,6 +31,7 @@
         android:layout_marginTop="40dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_baseline_person_24"
+        app:civ_circle_background_color="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/customize_biography"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
@@ -74,7 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/customize_languages"
         android:layout_width="360dp"
         android:layout_height="100dp"
@@ -91,6 +92,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customize_biography" />-->
+
+
+    <Button
+        android:id="@+id/customize_languages"
+        android:layout_width="360dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#F1C09B"
+        android:drawableLeft="@drawable/ic_baseline_language_24"
+        android:drawableTint="@color/main_rosa"
+        android:drawablePadding="1dp"
+        android:gravity="center"
+        android:onClick="languagePicker"
+        android:text="@string/select_language"
+        android:textColor="@color/main_rosa_dark"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customize_biography" />
 
 

@@ -47,6 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
             user.setGmail(gmail.getText().toString());
             user.setPassword(password.getText().toString());
             user.setName(name.getText().toString());
+            user.setColor("#FF9A72");
 
             db.userDao().registerUser(user);
 
