@@ -24,6 +24,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Display PairUp icon ToolBar
+        //getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_logo);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         db = AppDatabase.getInstance(getApplicationContext());
 
         gmail = findViewById(R.id.login_email);

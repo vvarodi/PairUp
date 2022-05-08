@@ -24,6 +24,10 @@ public class PairUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pair_up);
 
+        // Display PairUp icon ToolBar
+        //getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_logo);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Nav = findViewById(R.id.bottom_navigation);
         Nav.setSelectedItemId(R.id.home);
         // default Home fragment
