@@ -3,16 +3,28 @@ package com.example.pairup.db;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
 
-@Entity(tableName = "event")
+@Entity(tableName = "event", foreignKeys = {
+        @ForeignKey(
+        entity = UserEntity.class,
+        parentColumns = "id_user",
+        childColumns = "id_event",
+        onDelete = ForeignKey.CASCADE,
+        onUpdate = ForeignKey.CASCADE
+    )
+})
 public class EventEntity {
 
     @PrimaryKey(autoGenerate = true)
-    public long id;
+    public long id_event;
+
+    @ColumnInfo(name="id_user")
+    public long id_user;
 
     @ColumnInfo(name="day")
     public String day;
@@ -33,6 +45,22 @@ public class EventEntity {
     public boolean full;
 
     public EventEntity() {
+    }
+
+    public long getId_event() {
+        return id_event;
+    }
+
+    public void setId_event(long id_event) {
+        this.id_event = id_event;
+    }
+
+    public long getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(long id_user) {
+        this.id_user = id_user;
     }
 
     public String getDay() {

@@ -8,6 +8,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.EventDao;
 import com.example.pairup.db.EventEntity;
+import com.example.pairup.db.UserEntity;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.util.Calendar;
@@ -36,6 +38,7 @@ public class HostActivity extends AppCompatActivity {
 
     private AppDatabase db;
     private EventEntity new_event;
+    UserEntity user;
     String address = null;
     String date = null;
     String time = null;
@@ -50,6 +53,13 @@ public class HostActivity extends AppCompatActivity {
 
         db = AppDatabase.getInstance(getApplicationContext());
         new_event = new EventEntity();
+
+
+        String gmail = getIntent().getStringExtra("GMAIL");
+        user = db.userDao().getCurrentUser(gmail);
+        int color = Color.parseColor("#AE6118");
+        findViewById(R.id.profile1).setBackgroundColor(color);
+
 
         Button saveButton = (Button)findViewById(R.id.button_join);
         saveButton.setText("Save");
@@ -75,10 +85,13 @@ public class HostActivity extends AppCompatActivity {
     }
 
     private void saveEvent() {
+
+
         if (address == null || date == null || time == null || language == null){
 
             Toast.makeText(this, "Empty field", Toast.LENGTH_LONG).show();
         } else {
+            new_event.setId_user(user.id_user);
             new_event.setFull(false);
             db.eventDao().NewEvent(new_event);
             finish();

@@ -2,13 +2,15 @@ package com.example.pairup.db;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "user")
 public class UserEntity {
 
     @PrimaryKey(autoGenerate = true)
-    public long id;
+    public long id_user;
+
 
     @ColumnInfo(name = "gmail")
     public String gmail;
@@ -31,12 +33,12 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public long getId() {
-        return id;
+    public long getId_user() {
+        return id_user;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId_user(long id_user) {
+        this.id_user = id_user;
     }
 
     public String getGmail() {

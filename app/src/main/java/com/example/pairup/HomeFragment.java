@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.EventEntity;
+import com.example.pairup.db.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,11 @@ public class HomeFragment extends Fragment {
     }
 
     public void openHostActivity(){
+        PairUpActivity activity = (PairUpActivity) getActivity();
+        String email = activity.getCurrentUser();
+
         Intent intent = new Intent(getContext() , HostActivity.class);
+        intent.putExtra("GMAIL", email);
         startActivity(intent);
     }
 
