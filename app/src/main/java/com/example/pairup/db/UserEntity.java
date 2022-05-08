@@ -11,7 +11,6 @@ public class UserEntity {
     @PrimaryKey(autoGenerate = true)
     public long id_user;
 
-
     @ColumnInfo(name = "gmail")
     public String gmail;
 

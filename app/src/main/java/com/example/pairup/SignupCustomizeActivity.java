@@ -149,7 +149,7 @@ public class SignupCustomizeActivity extends AppCompatActivity {
      * Go to PairUpActivity
      */
     public void RegisterCustomization() {
-        
+
         openPairUpActivity(user.getGmail());
     }
 

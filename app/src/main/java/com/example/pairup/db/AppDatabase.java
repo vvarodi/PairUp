@@ -8,7 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {UserEntity.class, EventEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {UserEntity.class, EventEntity.class, Reservation.class}, version = 1, exportSchema = false)
 
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -17,6 +17,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
     public abstract EventDao eventDao();
+    public abstract ReservationDao reservationDao();
 
     // get Database Instance
     public static synchronized AppDatabase getInstance(Context context) {

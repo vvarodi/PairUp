@@ -1,9 +1,11 @@
 package com.example.pairup;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -55,6 +57,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView date, time, location, language;
         ShapeableImageView p1, p2, p3, p4;  // de momento no
+        Button join;
 
         ViewHolder(View itemView){
             super(itemView);
@@ -62,6 +65,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             time = itemView.findViewById(R.id.Time);
             location = itemView.findViewById(R.id.Location);
             language = itemView.findViewById(R.id.Language);
+            join = itemView.findViewById(R.id.button_join);
         }
 
         void bindData(final EventEntity item) {
@@ -69,6 +73,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             time.setText(item.time);
             location.setText(item.location);
             language.setText(item.language);
+            String join_id = "join" + item.id_event;
+            Log.d("assert", join_id);
+            join.setId((int)item.id_event);
         }
     }
 

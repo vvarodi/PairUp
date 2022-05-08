@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.EventDao;
 import com.example.pairup.db.EventEntity;
+import com.example.pairup.db.Reservation;
 import com.example.pairup.db.UserEntity;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
@@ -91,9 +93,17 @@ public class HostActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Empty field", Toast.LENGTH_LONG).show();
         } else {
-            new_event.setId_user(user.id_user);
             new_event.setFull(false);
-            db.eventDao().NewEvent(new_event);
+            long inserted_event = db.eventDao().NewEvent(new_event);
+            EventEntity inserted = db.eventDao().getEvent(inserted_event);
+
+
+            Reservation newRes = new Reservation(user.getId_user(), inserted.getId_event());
+            //newRes.setId_userRel(us1);
+            //newRes.setId_eventRel(ev1);
+            Log.d("Assert", "try" + newRes.id_event);
+            db.reservationDao().insertReservation(newRes);
+
             finish();
         }
 
