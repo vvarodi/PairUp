@@ -93,7 +93,7 @@
                     app:strokeWidth="2dp" />
                 <TextView
                     android:id="@+id/profile1_name"
-                    android:layout_width="70dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="center"
@@ -121,7 +121,7 @@
                     app:strokeWidth="2dp" />
                 <TextView
                     android:id="@+id/profile2_name"
-                    android:layout_width="70dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="center"
@@ -151,7 +151,7 @@
                     app:strokeWidth="2dp" />
                 <TextView
                     android:id="@+id/profile3_name"
-                    android:layout_width="70dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="center"
@@ -183,7 +183,7 @@
                     app:strokeWidth="2dp" />
                 <TextView
                     android:id="@+id/profile4_name"
-                    android:layout_width="70dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAlignment="center"

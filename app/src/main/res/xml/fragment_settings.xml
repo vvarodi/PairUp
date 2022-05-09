@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
         app:icon="@drawable/ic_baseline_notifications_24"
@@ -51,10 +51,15 @@
         app:title="Log out">
     </Preference>
 
-    <PreferenceCategory
+    <Preference
+        app:key="about_us"
         app:title="@string/about_us"
         app:icon="@drawable/ic_baseline_aboutus">
-    </PreferenceCategory>
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.pairup"
+            android:targetClass="com.example.pairup.AboutUsActivity"/>
+    </Preference>
 
 </PreferenceScreen>
 

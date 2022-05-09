@@ -62,5 +62,11 @@
     <string name="about_us">About us</string>
 
 
+    <string name="about_us_content">we are bla bla bla</string>
+    <string name="developers_title">Developers</string>
+    <string name="developers_content">Viki, Tanvir, Ali...</string>
+    <string name="youtube">Find us on YouTube</string>
+    <string name="copyright">Copyright © 2022. All rights reserved.</string>
+
 
 </resources>

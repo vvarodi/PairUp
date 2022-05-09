@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_rosa"
+    tools:context=".AboutUsActivity">
+
+    <LinearLayout
+        android:id="@+id/profile_above_layout"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="@drawable/profile_above"
+        android:backgroundTint="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/aboutus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:drawablePadding="20dp"
+            android:text="@string/about_us"
+            android:textColor="@color/main_rosa"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:drawableStartCompat="@mipmap/ic_logo" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/aboutus_content"
+        android:layout_width="360dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="20dp"
+        android:background="#30ffffff"
+        android:ems="10"
+        android:text="@string/about_us_content"
+        android:padding="20dp"
+        android:textColor="@color/main_skin_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_above_layout" />
+
+    <TextView
+        android:id="@+id/developers_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/developers_title"
+        android:textAlignment="center"
+        android:textColor="@color/main_skin"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutus_content" />
+
+    <TextView
+        android:id="@+id/developers_content"
+        android:layout_width="360dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="5dp"
+        android:background="#30ffffff"
+        android:ems="10"
+        android:text="@string/developers_content"
+        android:padding="20dp"
+        android:textColor="@color/main_skin_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/developers_title" />
+
+    <LinearLayout
+        android:id="@+id/profile_below_layout"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_marginTop="460dp"
+        android:background="@drawable/profile_above"
+        android:backgroundTint="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="42dp"
+            android:src="@drawable/youtube" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/youtube"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/main_skin_light"
+        android:ems="10"
+        android:padding="20dp"
+        android:text="@string/youtube"
+        android:textColor="@color/main_rosa"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.750"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/developers_content"/>
+
+    <TextView
+        android:id="@+id/copyright"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="right"
+        android:text="@string/copyright"
+        android:textAlignment="center"
+        android:textColor="@color/main_rosa"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/youtube" />
+
+    <WebView
+        android:id="@+id/webView"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

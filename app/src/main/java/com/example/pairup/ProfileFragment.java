@@ -85,17 +85,14 @@ public class ProfileFragment extends Fragment {
      * List Joined Events by user current user
      */
     private void showJoinedEvents(View view){
-        List<UserWithEvent> userEvents= db.reservationDao().getUsersWithEvents(user.getId_user());
-        List<EventEntity> events = userEvents.get(0).events;
-        List<EventWithUsers> my = new ArrayList<EventWithUsers>();
-
+        //
+        List<EventWithUsers> show = new ArrayList<EventWithUsers>();
         List<EventWithUsers> all = db.reservationDao().getEventsWithUsers();
-        Log.d("Assert", "my_event---"+all.get(0).event.day);
+
         for (int i=0; i < all.size(); i++){
             for (int j = 0; j < all.get(i).users.size(); j++){
                 if (all.get(i).users.get(j).getId_user() == user.getId_user()){
-                    my.add(all.get(i));
-                    Log.d("Assert", "my_event"+my.get(i).event.day);
+                    show.add(all.get(i));
                 }
             }
         }
@@ -104,7 +101,8 @@ public class ProfileFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_profile);
         LinearLayout empty_txt = view.findViewById(R.id.empty);
 
-        if (my.size() == 0) {
+        // User have not joined events yet
+        if (show.size() == 0) {
             recyclerView.setVisibility(View.GONE);
             empty_txt.setVisibility(View.VISIBLE);
 
@@ -113,10 +111,8 @@ public class ProfileFragment extends Fragment {
             empty_txt.setVisibility(View.GONE);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-            EventAdapter adapter = new EventAdapter(my, getActivity());
+            EventAdapter adapter = new EventAdapter(show, getActivity());
             recyclerView.setAdapter(adapter);
         }
     }
-
-
 }
