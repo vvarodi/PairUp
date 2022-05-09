@@ -30,6 +30,9 @@ public class EventEntity {
     @ColumnInfo(name="members")
     public int members;
 
+    @ColumnInfo(name="joined")
+    public int joined;
+
     @ColumnInfo(name="full")
     public boolean full;
 

@@ -19,9 +19,11 @@ import android.widget.TextView;
 
 import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.EventEntity;
+import com.example.pairup.db.EventWithUsers;
 import com.example.pairup.db.UserEntity;
 import com.example.pairup.db.UserWithEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -85,19 +87,24 @@ public class ProfileFragment extends Fragment {
     private void showJoinedEvents(View view){
         List<UserWithEvent> userEvents= db.reservationDao().getUsersWithEvents(user.getId_user());
         List<EventEntity> events = userEvents.get(0).events;
+        List<EventWithUsers> my = new ArrayList<EventWithUsers>();
 
-        /*if (userEvents.get(0).events.size() > 0) {
-            for (int i = 0; i < userEvents.get(0).events.size(); i++) {
-                EventEntity ev = userEvents.get(0).events.get(i);
-                events.add(ev);
-                //Log.d("Assert", "my_event"+userEvents.get(0).events.get(i).day);
+        List<EventWithUsers> all = db.reservationDao().getEventsWithUsers();
+        Log.d("Assert", "my_event---"+all.get(0).event.day);
+        for (int i=0; i < all.size(); i++){
+            for (int j = 0; j < all.get(i).users.size(); j++){
+                if (all.get(i).users.get(j).getId_user() == user.getId_user()){
+                    my.add(all.get(i));
+                    Log.d("Assert", "my_event"+my.get(0).event.day);
+                }
             }
-        }*/
+        }
+
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         LinearLayout empty_txt = view.findViewById(R.id.empty);
 
-        if (events.size() == 0) {
+        if (my.size() == 0) {
             recyclerView.setVisibility(View.GONE);
             empty_txt.setVisibility(View.VISIBLE);
 
@@ -106,7 +113,7 @@ public class ProfileFragment extends Fragment {
             empty_txt.setVisibility(View.GONE);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-            EventAdapter adapter = new EventAdapter(events, getActivity());
+            EventAdapter adapter = new EventAdapter(my, getActivity());
             recyclerView.setAdapter(adapter);
         }
     }

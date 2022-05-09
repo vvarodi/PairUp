@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.EventEntity;
+import com.example.pairup.db.EventWithUsers;
 import com.example.pairup.db.Reservation;
 import com.example.pairup.db.UserEntity;
 import com.example.pairup.db.UserWithEvent;
@@ -30,11 +32,11 @@ import java.util.List;
  */
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
 
-    private List<EventEntity> mData;
+    private List<EventWithUsers> mData;
     private LayoutInflater mInflater;
     private Context context;
 
-    public EventAdapter(List<EventEntity> itemList, Context context){
+    public EventAdapter(List<EventWithUsers> itemList, Context context){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -59,7 +61,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         holder.bindData(mData.get(position));
     }
 
-    public void setItems(List<EventEntity> items){ mData = items;}
+    public void setItems(List<EventWithUsers> items){ mData = items;}
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView date, time, location, language;
@@ -79,13 +81,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             p4 = itemView.findViewById(R.id.profile4);
         }
 
-        void bindData(final EventEntity item) {
-            date.setText(item.day);
-            time.setText(item.time);
-            location.setText(item.location);
-            language.setText(item.language);
-            String join_id = "join" + item.id_event;
-            Log.d("assert", join_id);
+            void bindData(final EventWithUsers item) {
+            date.setText(item.event.day);
+            time.setText(item.event.time);
+            location.setText(item.event.location);
+            language.setText(item.event.language);
+            p1.setColorFilter(Color.parseColor(item.users.get(0).color));
+
             
             join.setOnClickListener(new View.OnClickListener() {
                 @Override

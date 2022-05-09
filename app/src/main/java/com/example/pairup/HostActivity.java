@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -76,18 +77,18 @@ public class HostActivity extends AppCompatActivity {
         members.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-                ImageView profile3 = (ImageView) findViewById(R.id.profile3);
-                ImageView profile4 = (ImageView) findViewById(R.id.profile4);
+                LinearLayout hide1 = findViewById(R.id.hide1);
+                LinearLayout hide2 = findViewById(R.id.hide2);
                 if (isChecked) {
                     if (checkedId == R.id.two) {
-                        profile3.setVisibility(View.GONE);
-                        profile4.setVisibility(View.GONE);
+                        hide1.setVisibility(View.GONE);
+                        hide2.setVisibility(View.GONE);
                         member = 2;
                     }
                     if (checkedId == R.id.four) {
                         member = 4;
-                        profile3.setVisibility(View.VISIBLE);
-                        profile4.setVisibility(View.VISIBLE);
+                        hide1.setVisibility(View.VISIBLE);
+                        hide2.setVisibility(View.VISIBLE);
                     }
                     new_event.setMembers(member);
                 }

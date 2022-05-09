@@ -26,4 +26,5 @@ public interface ReservationDao {
     @Transaction
     @Query("SELECT * FROM user where id_user=(:id)")
     public List<UserWithEvent> getUsersWithEvents(long id);
+
 }

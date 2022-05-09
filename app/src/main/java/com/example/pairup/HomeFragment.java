@@ -81,11 +81,11 @@ public class HomeFragment extends Fragment {
                 .setActionBarTitle("Join a meeting");
 
         List<EventEntity> allEvents= db.eventDao().getAllEvents();
-
+        List<EventWithUsers> all = db.reservationDao().getEventsWithUsers();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        EventAdapter adapter = new EventAdapter(allEvents, getActivity());
+        EventAdapter adapter = new EventAdapter(all, getActivity());
         recyclerView.setAdapter(adapter);
 
 
