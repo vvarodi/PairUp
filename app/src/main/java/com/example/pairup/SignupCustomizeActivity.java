@@ -35,12 +35,11 @@ public class SignupCustomizeActivity extends AppCompatActivity {
     private AppDatabase db;
     private UserEntity user;
 
-    EditText biography;
-    TextView isLanguageSelected;
-    ArrayList selectedLanguages;
-    ImageView avatar;
-    int initial_color;
-
+    private int initial_color;
+    private EditText biography;
+    private ArrayList selectedLanguages;
+    private ImageView avatar;
+    private String string_languages;
 
 
     @Override
@@ -50,19 +49,21 @@ public class SignupCustomizeActivity extends AppCompatActivity {
 
         // To update user information. Get current user entity
         db = AppDatabase.getInstance(getApplicationContext());
-        String email = getIntent().getExtras().getString("GMAIL");
-        user = db.userDao().getCurrentUser(email);
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        int id = prefs.getInt("ID", 0);
+        user = db.userDao().getCurrentUserById((long)id);
 
-        // Layout information
+        // Initializations
         biography = findViewById(R.id.customize_biography);
         avatar = findViewById(R.id.customize_avatar);
         // initial_color is the initially-selected color to be shown in the rectangle on the left of the arrow in COLOR DIALOG
         initial_color = Color.parseColor(user.getColor());
-        // Initialize
+        string_languages = ""; // Not Null if not selected items when update db
         selectedLanguages = new ArrayList();
 
         // Click Listeners of all buttons
-        findViewById(R.id.customize_color).setOnClickListener(view -> selectAvatarColor());
+        // AVATAR   LANGUAGES   SKIP  SAVE
+        findViewById(R.id.customize_color).setOnClickListener(view -> avatarColorPicker());
         findViewById(R.id.customize_languages).setOnClickListener(view -> languagePicker());
         findViewById(R.id.customize_save).setOnClickListener(view -> RegisterCustomization());
         findViewById(R.id.customize_skip).setOnClickListener(view -> Skip());
@@ -74,7 +75,7 @@ public class SignupCustomizeActivity extends AppCompatActivity {
      * Android Color Picker Library from:
      * https://github.com/yukuku/ambilwarna
      */
-    private void selectAvatarColor() {
+    private void avatarColorPicker() {
         AmbilWarnaDialog dialog = new AmbilWarnaDialog(SignupCustomizeActivity.this, initial_color , new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
@@ -82,8 +83,6 @@ public class SignupCustomizeActivity extends AppCompatActivity {
                 initial_color = color;
                 // Change avatar color in layout
                 avatar.setColorFilter(color);
-                // Update User Color in DB
-                db.userDao().updateColor(user.getId_user(), "#" + Integer.toHexString(initial_color));
             }
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {
@@ -96,7 +95,7 @@ public class SignupCustomizeActivity extends AppCompatActivity {
 
     /**
      * Select Language Dialog with Multi Choice languages
-     * Clicked items last time opened dialog will appear checked next time you open it
+     * Clicked items last time opened dialog will appear checked next time you open it again
      * Only if SAVE is clicked, DB user languages are updated
      */
     public void languagePicker() {
@@ -107,7 +106,7 @@ public class SignupCustomizeActivity extends AppCompatActivity {
         String[] languages_list = {"Italian", "French", "English", "Spanish", "Portuguese", "Japanese", "Mandarin", "Russian", "Arabic", "Dutch"};
         boolean[] checkedItems = {false, false, false, false, false, false, false, false, false, false};
 
-        // update checked items
+        // update checked items last time Dialog opened
         for (int j = 0; j < checkedItems.length; j++){
             if (selectedLanguages.contains(languages_list[j])){
                 checkedItems[j] = true;
@@ -128,8 +127,8 @@ public class SignupCustomizeActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int id) {
-                String string_languages = TextUtils.join(", ", selectedLanguages);
-                db.userDao().updateLanguages(user.getId_user(), string_languages);
+                string_languages = TextUtils.join(", ", selectedLanguages);
+
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -150,45 +149,17 @@ public class SignupCustomizeActivity extends AppCompatActivity {
      */
     public void RegisterCustomization() {
 
-        openPairUpActivity(user.getGmail());
+        // Update User Color in DB
+        db.userDao().updateColor(user.getId_user(), "#" + Integer.toHexString(initial_color));
+        // Update Biography
+        db.userDao().updateBiography(user.getId_user(), biography.getText().toString());
+        // Update Languages
+        db.userDao().updateLanguages(user.getId_user(), string_languages);
+
+        openPairUpActivity();
     }
 
 
-    /*
-    public Boolean validInput() {
-        boolean allFine = true;
-        if (!validBiography()) {
-            allFine = false;
-        }
-        if (!validLanguages()) {
-            allFine = false;
-        }
-        return allFine;
-    }
-
-    private Boolean validBiography() {
-        String bio = biography.getText().toString();
-        if (bio.length() == 0) {
-            biography.setError("Biography cannot be empty");
-            return false;
-        }else if (bio.length() >= 150) {
-            biography.setError("Biography too long. Maximum 150 characters.");
-            return false;
-        } else {
-            biography.setError(null);
-            return true;
-        }
-    }
-
-    private Boolean validLanguages() {
-        if (selectedLanguages.toString().length() == 0) {
-            isLanguageSelected.setError("You have to select at least 1 language");
-            return false;
-        } else {
-            isLanguageSelected.setError(null);
-            return true;
-        }
-    }*/
 
     /**
      * Skip Button to users who do not want to customize their Profile
@@ -196,16 +167,14 @@ public class SignupCustomizeActivity extends AppCompatActivity {
      * Opens PairUpActivity
      */
     private void Skip() {
-        openPairUpActivity(user.getGmail());
+        openPairUpActivity();
     }
 
     /**
      * Open PairUpActivity
-     * @param gmail: current user gmail to query
      */
-    public void openPairUpActivity (String gmail){
+    public void openPairUpActivity (){
         Intent intent = new Intent(this, PairUpActivity.class);
-        intent.putExtra("GMAIL", gmail);
         startActivity(intent);
         finish();
     }

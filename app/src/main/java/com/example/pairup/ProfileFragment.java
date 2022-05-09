@@ -43,7 +43,7 @@ public class ProfileFragment extends Fragment {
         txtView2.setText(user.getBiography());
 
         TextView txtView3 = (TextView) view.findViewById(R.id.profile_languages);
-        txtView3.setText(user.getLanguages().toString());
+        txtView3.setText(user.getLanguages());
 
         imageView.setColorFilter(Color.parseColor(user.getColor()));
 

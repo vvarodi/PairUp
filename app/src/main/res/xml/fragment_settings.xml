@@ -48,6 +48,9 @@
     <PreferenceCategory
         app:title="@string/logout"
         app:icon="@drawable/ic_baseline_logout_24">
+        <Preference
+            app:key="logout">
+        </Preference>
     </PreferenceCategory>
 
     <PreferenceCategory

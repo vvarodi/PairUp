@@ -18,6 +18,11 @@
     <string name="error_repeat_password">Repeat Password</string>
     <string name="error_password_not_match">Passwords do not match</string>
     <string name="invalid_credentials">Invalid Credentials</string>
+    <!-- Customize activity -->
+    <string name="customize">Customize your profile</string>
+    <string name="skip">SKIP</string>
+    <string name="choose_color">CHOOSE AVATAR COLOR</string>
+    <string name="save_color">SAVE COLOR</string>
     <!-- Bottom Navigation Bar -->
     <string name="settings">Settings</string>
     <string name="home">Home</string>
@@ -40,11 +45,7 @@
     <string name="edit_biography">EDIT BIOGRAPHY</string>
     <string name="write_language_learning">Languages learning</string>
     <string name="edit_languages">EDIT LANGUAGES</string>
-    <!-- Customize activity -->
-    <string name="customize">Customize your profile</string>
-    <string name="skip">SKIP</string>
-    <string name="choose_color">CHOOSE AVATAR COLOR</string>
-    <string name="save_color">SAVE COLOR</string>
+
 
     <!-- Settings -->
     <string name="notifications">Notifications</string>

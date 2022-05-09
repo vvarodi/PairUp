@@ -37,8 +37,7 @@ public class PairUpActivity extends AppCompatActivity {
         SharedPreferences mPrefs = getSharedPreferences("prefs", 0);
         SharedPreferences.Editor editor = mPrefs.edit();
         String gmail = getIntent().getStringExtra("GMAIL");
-        editor.putString("EMAIL", gmail);
-        editor.apply();
+        editor.putString("EMAIL", gmail).apply();
 
 
         Nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

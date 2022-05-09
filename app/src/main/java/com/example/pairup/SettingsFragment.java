@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -24,6 +25,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     EditTextPreference username, biography;
     Preference languages, avatar_color;
     int initial_color;
+    Preference logout;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -76,6 +78,18 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return true;
             }
         });
+
+
+
+        logout = findPreference("logout");
+        logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(@NonNull Preference preference) {
+                logoutFunction();
+                return true;
+            }
+        });
+
     }
 
     private void usernamePicker() {
@@ -166,6 +180,29 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {
+            }
+        });
+        dialog.show();
+    }
+
+    private void logoutFunction() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setTitle(getString(R.string.logout));
+        dialog.setMessage("Are you sure you want to log out?");
+        dialog.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                SharedPreferences prefs = getContext().getSharedPreferences("prefs", getContext().MODE_PRIVATE);
+                prefs.edit().putBoolean("LOGGED", false).apply();
+
+                prefs.edit().putInt("ID", 0).apply();
+                getActivity().finish();
+
+            }
+        });
+        dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
             }
         });
         dialog.show();
