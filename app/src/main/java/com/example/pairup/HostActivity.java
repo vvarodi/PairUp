@@ -56,9 +56,10 @@ public class HostActivity extends AppCompatActivity {
         db = AppDatabase.getInstance(getApplicationContext());
         new_event = new EventEntity();
 
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        int id = prefs.getInt("ID", 0);
+        user = db.userDao().getCurrentUserById((long)id);
 
-        String gmail = getIntent().getStringExtra("GMAIL");
-        user = db.userDao().getCurrentUser(gmail);
         int color = Color.parseColor("#AE6118");
         findViewById(R.id.profile1).setBackgroundColor(color);
 

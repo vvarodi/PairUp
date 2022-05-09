@@ -4,7 +4,6 @@ package com.example.pairup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -13,7 +12,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pairup.db.AppDatabase;
@@ -37,7 +35,7 @@ public class SignupCustomizeActivity extends AppCompatActivity {
 
     private int initial_color;
     private EditText biography;
-    private ArrayList selectedLanguages;
+    private ArrayList<String> selectedLanguages;
     private ImageView avatar;
     private String string_languages;
 
@@ -51,7 +49,7 @@ public class SignupCustomizeActivity extends AppCompatActivity {
         db = AppDatabase.getInstance(getApplicationContext());
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         int id = prefs.getInt("ID", 0);
-        user = db.userDao().getCurrentUserById((long)id);
+        user = db.userDao().getCurrentUserById(id);
 
         // Initializations
         biography = findViewById(R.id.customize_biography);
@@ -59,7 +57,7 @@ public class SignupCustomizeActivity extends AppCompatActivity {
         // initial_color is the initially-selected color to be shown in the rectangle on the left of the arrow in COLOR DIALOG
         initial_color = Color.parseColor(user.getColor());
         string_languages = ""; // Not Null if not selected items when update db
-        selectedLanguages = new ArrayList();
+        selectedLanguages = new ArrayList<>();
 
         // Click Listeners of all buttons
         // AVATAR   LANGUAGES   SKIP  SAVE
@@ -98,7 +96,7 @@ public class SignupCustomizeActivity extends AppCompatActivity {
      * Clicked items last time opened dialog will appear checked next time you open it again
      * Only if SAVE is clicked, DB user languages are updated
      */
-    public void languagePicker() {
+    private void languagePicker() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Languages interested in:");
 
@@ -113,30 +111,16 @@ public class SignupCustomizeActivity extends AppCompatActivity {
             }
         }
 
-        builder.setMultiChoiceItems(languages_list, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
-                if (isChecked) {
-                    selectedLanguages.add(languages_list[i]);
-                } else {
-                    selectedLanguages.remove(languages_list[i]);
-                }
+        builder.setMultiChoiceItems(languages_list, checkedItems, (dialogInterface, i, isChecked) -> {
+            if (isChecked) {
+                selectedLanguages.add(languages_list[i]);
+            } else {
+                selectedLanguages.remove(languages_list[i]);
             }
         });
 
-        builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int id) {
-                string_languages = TextUtils.join(", ", selectedLanguages);
-
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int id) {
-                dialogInterface.dismiss();
-            }
-        });
+        builder.setPositiveButton(R.string.save, (dialogInterface, id) -> string_languages = TextUtils.join(", ", selectedLanguages));
+        builder.setNegativeButton(R.string.cancel, (dialogInterface, id) -> dialogInterface.dismiss());
         // Create and show the Alert Dialog
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -147,7 +131,7 @@ public class SignupCustomizeActivity extends AppCompatActivity {
      * Update DB
      * Go to PairUpActivity
      */
-    public void RegisterCustomization() {
+    private void RegisterCustomization() {
 
         // Update User Color in DB
         db.userDao().updateColor(user.getId_user(), "#" + Integer.toHexString(initial_color));
@@ -167,13 +151,14 @@ public class SignupCustomizeActivity extends AppCompatActivity {
      * Opens PairUpActivity
      */
     private void Skip() {
+        Toast.makeText(this, getString(R.string.skipped), Toast.LENGTH_SHORT).show();
         openPairUpActivity();
     }
 
     /**
      * Open PairUpActivity
      */
-    public void openPairUpActivity (){
+    private void openPairUpActivity (){
         Intent intent = new Intent(this, PairUpActivity.class);
         startActivity(intent);
         finish();

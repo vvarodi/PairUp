@@ -18,6 +18,7 @@ import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.EventEntity;
 import com.example.pairup.db.Reservation;
 import com.example.pairup.db.UserEntity;
+import com.example.pairup.db.UserWithEvent;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
@@ -72,6 +73,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             location = itemView.findViewById(R.id.Location);
             language = itemView.findViewById(R.id.Language);
             join = itemView.findViewById(R.id.button_join);
+            p1 = itemView.findViewById(R.id.profile1);
+            p2 = itemView.findViewById(R.id.profile2);
+            p3 = itemView.findViewById(R.id.profile3);
+            p4 = itemView.findViewById(R.id.profile4);
         }
 
         void bindData(final EventEntity item) {
@@ -81,12 +86,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             language.setText(item.language);
             String join_id = "join" + item.id_event;
             Log.d("assert", join_id);
+            
             join.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent = new Intent(context, EventInfoActivity.class);
 
+                    Intent intent = new Intent(context, EventInfoActivity.class);
                     context.startActivity(intent);
 
                 }

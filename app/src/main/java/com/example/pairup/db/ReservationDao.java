@@ -24,6 +24,6 @@ public interface ReservationDao {
     public List<EventWithUsers> getEventsWithUsers();
 
     @Transaction
-    @Query("SELECT * FROM user")
-    public List<UserWithEvent> getUsersWithEvents();
+    @Query("SELECT * FROM user where id_user=(:id)")
+    public List<UserWithEvent> getUsersWithEvents(long id);
 }

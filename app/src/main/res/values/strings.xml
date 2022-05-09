@@ -21,6 +21,7 @@
     <!-- Customize activity -->
     <string name="customize">Customize your profile</string>
     <string name="skip">SKIP</string>
+    <string name="skipped">Edit Profile Later</string>
     <string name="choose_color">CHOOSE AVATAR COLOR</string>
     <string name="save_color">SAVE COLOR</string>
     <!-- Bottom Navigation Bar -->
@@ -45,6 +46,8 @@
     <string name="edit_biography">EDIT BIOGRAPHY</string>
     <string name="write_language_learning">Languages learning</string>
     <string name="edit_languages">EDIT LANGUAGES</string>
+    <string name="enrolled_events">Joined events</string>
+    <string name="no_joined">No joined events. Join and have fun!</string>
 
 
     <!-- Settings -->

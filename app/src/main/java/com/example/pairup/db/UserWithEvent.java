@@ -14,4 +14,5 @@ public class UserWithEvent {
             associateBy = @Junction(value = Reservation.class)
     )
     public List<EventEntity> events;
+
 }
