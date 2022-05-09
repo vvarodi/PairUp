@@ -9,6 +9,7 @@ import android.os.Bundle;
 /**
  * MainActivity: First Activity and Window when you open the App
  * Contains: Logo + Login Button + SignUp Button
+ * For new App users or when user has logged out
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -22,12 +23,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
+          To keep User Logged In
+          If LOGGED = true -> openPairUpActivity()
+          If LOGGED = false -> .MainActivity
+         */
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         if (prefs.getBoolean("LOGGED", false)){
             openPairUpActivity();
         }
 
         // Retrieve with findViewById(int) the buttons from our UI to interact with
+        // LOGIN   SIGNUP
         findViewById(R.id.button_main_login).setOnClickListener(view -> openLoginActivity());
         findViewById(R.id.button_main_signup).setOnClickListener(view -> openSignUpActivity());
     }

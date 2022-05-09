@@ -9,6 +9,15 @@
     <string name="repeat_password">Repeat Password</string>
     <string name="email">Email</string>
     <string name="email_hint">email@domain.com</string>
+    <string name="default_color">"#FF9A72"</string>
+    <string name="error_empty">"Cannot be empty"</string>
+    <string name="error_too_long">Too long</string>
+    <string name="error_too_short">Too short</string>
+    <string name="error_gmail">Invalid Email</string>
+    <string name="error_gmail_registered">Email already registered</string>
+    <string name="error_repeat_password">Repeat Password</string>
+    <string name="error_password_not_match">Passwords do not match</string>
+    <string name="invalid_credentials">Invalid Credentials</string>
     <!-- Bottom Navigation Bar -->
     <string name="settings">Settings</string>
     <string name="home">Home</string>

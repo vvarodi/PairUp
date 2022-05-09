@@ -1,6 +1,5 @@
 package com.example.pairup;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -25,8 +24,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Display PairUp icon ToolBar
         /*
+        Display PairUp icon ToolBar
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_logo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         */
@@ -51,28 +50,13 @@ public class LoginActivity extends AppCompatActivity {
             UserEntity userEntity = db.userDao().login(gmail.getText().toString(), password.getText().toString());
 
             if (userEntity == null){
-                Toast.makeText(LoginActivity.this,"Invalid credentials",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this,getString(R.string.invalid_credentials), Toast.LENGTH_SHORT).show();
             }else{
-                openPairUpActivity(gmail.getText().toString());
+                openPairUpActivity();
             }
         }
     }
 
-    /**
-     * Open PairUpActivity if Login credentials (gmail and password) are correct
-     * @param gmail: pass user gmail to PairUpActivity to retrieve user data
-     */
-    private void openPairUpActivity(String gmail){
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        prefs.edit().putBoolean("LOGGED", true).apply();
-        UserEntity current_user = db.userDao().getCurrentUser(gmail);
-        prefs.edit().putInt("ID", (int)current_user.getId_user()).apply();
-
-        Intent intent = new Intent(this, PairUpActivity.class);
-        intent.putExtra("GMAIL", gmail);
-        startActivity(intent);
-        finish();
-    }
 
     /**
      * Validate Gmail and Password fields:
@@ -84,13 +68,13 @@ public class LoginActivity extends AppCompatActivity {
     private Boolean validInput() {
         boolean allFine = true;
         if (gmail.getText().toString().isEmpty()) {
-            gmail.setError("Gmail is empty");
+            gmail.setError(getString(R.string.error_empty));
             allFine = false;
         } else{
             gmail.setError(null);
         }
         if (password.getText().toString().isEmpty()) {
-            password.setError("Password is empty");
+            password.setError(getString(R.string.error_empty));
             allFine = false;
         } else {
             password.setError(null);
@@ -98,5 +82,19 @@ public class LoginActivity extends AppCompatActivity {
         return allFine;
     }
 
+    /**
+     * Open PairUpActivity if Login credentials (gmail and password) are correct
+     */
+    private void openPairUpActivity(){
+        // Save LOGGED = true, ID = current user id
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        prefs.edit().putBoolean("LOGGED", true).apply();
+        UserEntity current_user = db.userDao().getCurrentUser(gmail.getText().toString());
+        prefs.edit().putInt("ID", (int)current_user.getId_user()).apply();
+
+        Intent intent = new Intent(this, PairUpActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 }

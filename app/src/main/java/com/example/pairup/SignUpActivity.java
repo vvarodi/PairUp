@@ -1,6 +1,5 @@
 package com.example.pairup;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -29,11 +28,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         db = AppDatabase.getInstance(getApplicationContext());
 
+        // Fields to fill
         name = findViewById(R.id.signup_username);
         gmail = findViewById(R.id.signup_gmail);
         password = findViewById(R.id.signup_password);
         re_password = findViewById(R.id.signup_repeat_password);
 
+        // SIGNUP
         findViewById(R.id.signup_button_signup).setOnClickListener(view -> RegisterUser());
     }
 
@@ -48,29 +49,20 @@ public class SignUpActivity extends AppCompatActivity {
             user.setGmail(gmail.getText().toString());
             user.setPassword(password.getText().toString());
             user.setName(name.getText().toString());
-            user.setColor("#FF9A72"); // Default profile avatar color
+            user.setColor(getString(R.string.default_color)); // Default profile avatar color
 
             db.userDao().registerUser(user);
 
-            openPairUpActivity(user.getGmail());
+            // Save in PREFS: current user ID, LOGGED = true
+            SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+            prefs.edit().putBoolean("LOGGED", true).apply();
+            UserEntity current_user = db.userDao().getCurrentUser(gmail.getText().toString());
+            prefs.edit().putInt("ID", (int)current_user.getId_user()).apply();
+
+            openSignupCustomizeActivity();
         }
     }
 
-    /**
-     * Open PairUpActivity when user clicks button SignUp and all fields are validated
-     * @param gmail: pass user gmail to PairUpActivity to retrieve user data
-     */
-    private void openPairUpActivity(String gmail){
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        prefs.edit().putBoolean("LOGGED", true).apply();
-        UserEntity current_user = db.userDao().getCurrentUser(gmail);
-        prefs.edit().putInt("ID", (int)current_user.getId_user()).apply();
-
-        Intent intent = new Intent(this, SignupCustomizeActivity.class);
-        intent.putExtra("GMAIL", gmail);  // Pass gmail to the new activity
-        startActivity(intent);
-        finish();
-    }
 
     /**
      * Validate all fields are correctly filled
@@ -107,19 +99,46 @@ public class SignUpActivity extends AppCompatActivity {
     private Boolean validateName(){
         String string_name = name.getText().toString();
         if (string_name.isEmpty()){
-            name.setError("Cannot be empty");
+            name.setError(getString(R.string.error_empty));
             return false;
         } else if (string_name.length() >= 15 ){
-            name.setError("Username too long");
+            name.setError(getString(R.string.error_too_long));
             return false;
         } else if (string_name.length() < 4){
-            name.setError("Username too short");
+            name.setError(getString(R.string.error_too_short));
             return false;
         } else{
             name.setError(null);
             return true;
         }
     }
+
+    /**
+     * Checks if Gmail field is correctly filled:
+     *      - Not empty
+     *      - EMAIL_ADDRESS valid format
+     *      - Not already registered with that email address
+     *
+     * @return: true if Gmail field correctly filled
+     *          false otherwise
+     */
+    private Boolean validateGmail(){
+        String string_gmail = gmail.getText().toString();
+        if (string_gmail.isEmpty()){
+            gmail.setError(getString(R.string.error_empty));
+            return false;
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(string_gmail).matches()){
+            gmail.setError(getString(R.string.error_gmail));
+            return false;
+        } else if (db.userDao().getCurrentUser(string_gmail) != null){
+            gmail.setError(getString(R.string.error_gmail_registered));
+            return false;
+        } else{
+            gmail.setError(null);
+            return true;
+        }
+    }
+
 
     /**
      * Checks if Password field is correctly filled:
@@ -132,11 +151,11 @@ public class SignUpActivity extends AppCompatActivity {
         // To Do: Stronger password
         String string_password = password.getText().toString();
         if (string_password.isEmpty()){
-            password.setError("Cannot be empty");
+            password.setError(getString(R.string.error_empty));
             return false;
         }
         /*else if (string_password.length() < 8){
-            password.setError("Password too short");
+            password.setError("R.string.error_too_short");
             return false;
         } */
         else{
@@ -157,10 +176,10 @@ public class SignUpActivity extends AppCompatActivity {
         String string_re_password = re_password.getText().toString();
 
         if (string_re_password.isEmpty()){
-            re_password.setError("Repeat Password");
+            re_password.setError(getString(R.string.repeat_password));
             return false;
         } else if (!string_re_password.equals(string_password)){
-            re_password.setError("Passwords do not match");
+            re_password.setError(getString(R.string.error_password_not_match));
             return false;
         } else{
             re_password.setError(null);
@@ -169,29 +188,13 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     * Checks if Gmail field is correctly filled:
-     *      - Not empty
-     *      - EMAIL_ADDRESS valid format
-     *      - Not already registered with that email address
-     *
-     * @return: true if Gmail field correctly filled
-     *          false otherwise
+     * Open SignupCustomizeActivity when user clicks button SignUp and all fields are validated
      */
-    private Boolean validateGmail(){
-        String string_gmail = gmail.getText().toString();
-        if (string_gmail.isEmpty()){
-            gmail.setError("Cannot be empty");
-            return false;
-        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(string_gmail).matches()){
-            gmail.setError("Invalid Email");
-            return false;
-        } else if (db.userDao().getCurrentUser(string_gmail) != null){
-            gmail.setError("User Email already registered");
-            return false;
-        } else{
-            gmail.setError(null);
-            return true;
-        }
+    private void openSignupCustomizeActivity(){
+        Intent intent = new Intent(this, SignupCustomizeActivity.class);
+        //intent.putExtra("GMAIL", gmail);  // Pass gmail to the new activity
+        startActivity(intent);
+        finish();
     }
 
 
