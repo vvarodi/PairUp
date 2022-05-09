@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -60,8 +61,9 @@ public class HostActivity extends AppCompatActivity {
         int id = prefs.getInt("ID", 0);
         user = db.userDao().getCurrentUserById((long)id);
 
-        int color = Color.parseColor("#AE6118");
-        findViewById(R.id.profile1).setBackgroundColor(color);
+        ImageView profile1 = (ImageView) findViewById(R.id.profile1);
+        profile1.setColorFilter(Color.parseColor(user.getColor()));
+
 
 
         Button saveButton = (Button)findViewById(R.id.button_join);
@@ -74,12 +76,18 @@ public class HostActivity extends AppCompatActivity {
         members.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+                ImageView profile3 = (ImageView) findViewById(R.id.profile3);
+                ImageView profile4 = (ImageView) findViewById(R.id.profile4);
                 if (isChecked) {
                     if (checkedId == R.id.two) {
+                        profile3.setVisibility(View.GONE);
+                        profile4.setVisibility(View.GONE);
                         member = 2;
                     }
                     if (checkedId == R.id.four) {
                         member = 4;
+                        profile3.setVisibility(View.VISIBLE);
+                        profile4.setVisibility(View.VISIBLE);
                     }
                     new_event.setMembers(member);
                 }

@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.EventEntity;
+import com.example.pairup.db.EventWithUsers;
 import com.example.pairup.db.Reservation;
 import com.example.pairup.db.UserEntity;
 
@@ -42,11 +43,18 @@ public class HomeFragment extends Fragment {
 
         List<EventEntity> allEvents= db.eventDao().getAllEvents();
 
+        List<EventWithUsers> all = db.reservationDao().getEventsWithUsers();
+        int i = 0;
+        for (i=0; i< all.size(); i++){
+            Log.d("Assert", "viki" + all.size());
+            Log.d("Assert", "viki" + all.get(i).users.size()+ " ea");
+        }
+
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        EventAdapter adapter = new EventAdapter(allEvents, getActivity());
+        EventAdapter adapter = new EventAdapter(all, getActivity());
         recyclerView.setAdapter(adapter);
 
 
