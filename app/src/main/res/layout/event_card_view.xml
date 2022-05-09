@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
-    android:layout_height="240dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:backgroundTint="@color/main_skin_card"
     app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
@@ -13,44 +14,53 @@
         android:layout_width="match_parent"
         android:layout_height="240dp">
 
+
         <TextView
             android:id="@+id/Date"
-            android:layout_width="158dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:autoSizeTextType="uniform"
+            android:maxLines="1"
             android:text="@string/select_date"
-            android:textAlignment="center"
             android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/Time"
             app:layout_constraintEnd_toStartOf="@+id/Time"
+            app:layout_constraintHorizontal_bias="0.285"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="@+id/Time"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/Time"
-            android:layout_width="158dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="80dp"
+            android:layout_toEndOf="@+id/Date"
+            android:maxLines="1"
             android:text="@string/select_time"
-            android:textAlignment="center"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/Date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/Date"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintEnd_toStartOf="@+id/Language"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/Location"
-            android:layout_width="348dp"
-            android:layout_height="41dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/select_location"
-            android:textAlignment="center"
+            android:id="@+id/Language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="36dp"
+            android:maxLines="1"
+            android:text="@string/select_language"
             android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.301"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Date" />
+            app:layout_constraintTop_toTopOf="@+id/Time" />
 
         <LinearLayout
             android:id="@+id/avatars"
@@ -59,6 +69,7 @@
             android:layout_weight = "1"
             android:gravity="center"
             android:orientation="horizontal"
+            android:weightSum="100"
             app:layout_constraintBottom_toTopOf="@+id/button_join"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +78,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="25">
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profile1"
                     android:layout_width="70dp"
@@ -93,7 +106,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="25">
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profile2"
                     android:layout_width="70dp"
@@ -119,7 +134,9 @@
                 android:id="@+id/hide1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="25">
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profile3"
                     android:layout_width="70dp"
@@ -145,9 +162,11 @@
 
             <LinearLayout
                 android:id="@+id/hide2"
+                android:gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_weight="25">
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profile4"
                     android:layout_width="70dp"
@@ -176,30 +195,33 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/Language"
-            android:layout_width="147dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="20dp"
-            android:paddingTop="10dp"
-            android:text="@string/select_language"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button_join"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:id="@+id/Location"
+            android:layout_width="400dp"
+            android:layout_height="30dp"
+            android:text="Location"
+            android:inputType="text|textMultiLine"
+            android:textAlignment="center"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/avatars" />
+            app:layout_constraintTop_toBottomOf="@+id/Time" />
+
+
 
         <Button
             android:id="@+id/button_join"
             android:layout_width="170dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/join"
             app:cornerRadius="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/Language"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -104,14 +104,11 @@ public class HostActivity extends AppCompatActivity {
             Toast.makeText(this, "Empty field", Toast.LENGTH_LONG).show();
         } else {
             new_event.setFull(false);
+            new_event.joined = 1;
             long inserted_event = db.eventDao().NewEvent(new_event);
             EventEntity inserted = db.eventDao().getEvent(inserted_event);
 
-
             Reservation newRes = new Reservation(user.getId_user(), inserted.getId_event());
-            //newRes.setId_userRel(us1);
-            //newRes.setId_eventRel(ev1);
-            Log.d("Assert", "try" + newRes.id_event);
             db.reservationDao().insertReservation(newRes);
 
             finish();

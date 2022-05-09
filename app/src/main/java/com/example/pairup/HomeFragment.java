@@ -41,14 +41,7 @@ public class HomeFragment extends Fragment {
 
         db = AppDatabase.getInstance(getActivity().getApplicationContext());
 
-        List<EventEntity> allEvents= db.eventDao().getAllEvents();
-
         List<EventWithUsers> all = db.reservationDao().getEventsWithUsers();
-        int i = 0;
-        for (i=0; i< all.size(); i++){
-            Log.d("Assert", "viki" + all.size());
-            Log.d("Assert", "viki" + all.get(i).users.size()+ " ea");
-        }
 
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);

@@ -95,13 +95,13 @@ public class ProfileFragment extends Fragment {
             for (int j = 0; j < all.get(i).users.size(); j++){
                 if (all.get(i).users.get(j).getId_user() == user.getId_user()){
                     my.add(all.get(i));
-                    Log.d("Assert", "my_event"+my.get(0).event.day);
+                    Log.d("Assert", "my_event"+my.get(i).event.day);
                 }
             }
         }
 
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_profile);
         LinearLayout empty_txt = view.findViewById(R.id.empty);
 
         if (my.size() == 0) {

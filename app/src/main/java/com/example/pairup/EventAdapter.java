@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,7 +53,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     @Override
     public EventAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         // How is going to be seen each item
-        View view = mInflater.inflate(R.layout.event_card_view, null);
+        View view = mInflater.inflate(R.layout.event_card_view, parent, false);
         return new EventAdapter.ViewHolder(view);
     }
 
@@ -64,9 +65,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public void setItems(List<EventWithUsers> items){ mData = items;}
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView date, time, location, language;
-        ShapeableImageView p1, p2, p3, p4;  // de momento no
+        TextView date, time, location, language, p1t, p2t, p3t, p4t;
+        ShapeableImageView p1, p2, p3, p4;
         Button join;
+        LinearLayout h1, h2;
 
         ViewHolder(View itemView){
             super(itemView);
@@ -79,6 +81,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             p2 = itemView.findViewById(R.id.profile2);
             p3 = itemView.findViewById(R.id.profile3);
             p4 = itemView.findViewById(R.id.profile4);
+            h1 = itemView.findViewById(R.id.hide1);
+            h2 = itemView.findViewById(R.id.hide2);
+            p1t = itemView.findViewById(R.id.profile1_name);
+            p2t = itemView.findViewById(R.id.profile2_name);
+            p3t = itemView.findViewById(R.id.profile3_name);
+            p4t = itemView.findViewById(R.id.profile4_name);
         }
 
             void bindData(final EventWithUsers item) {
@@ -86,8 +94,38 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             time.setText(item.event.time);
             location.setText(item.event.location);
             language.setText(item.event.language);
-            p1.setColorFilter(Color.parseColor(item.users.get(0).color));
 
+            if (item.users.size() > 0){
+                p1.setColorFilter(Color.parseColor(item.users.get(0).color));
+                p1t.setText(item.users.get(0).name);
+            }
+
+
+            if (item.event.members == 2){
+                h1.setVisibility(View.GONE);
+                h2.setVisibility(View.GONE);
+            }
+
+
+            /**
+            if (item.event.members == 2){
+                p2.setColorFilter(Color.parseColor(item.users.get(1).color));
+                p2t.setText(item.users.get(1).name);
+            }
+            if (item.event.members == 3){
+                p2.setColorFilter(Color.parseColor(item.users.get(1).color));
+                p2t.setText(item.users.get(1).name);
+                p3.setColorFilter(Color.parseColor(item.users.get(2).color));
+                p3t.setText(item.users.get(2).name);
+            }
+            if (item.event.members == 4){
+                p2.setColorFilter(Color.parseColor(item.users.get(1).color));
+                p2t.setText(item.users.get(1).name);
+                p3.setColorFilter(Color.parseColor(item.users.get(2).color));
+                p3t.setText(item.users.get(2).name);
+                p4.setColorFilter(Color.parseColor(item.users.get(3).color));
+                p4t.setText(item.users.get(3).name);
+            }**/
             
             join.setOnClickListener(new View.OnClickListener() {
                 @Override

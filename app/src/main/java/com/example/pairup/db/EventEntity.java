@@ -94,4 +94,12 @@ public class EventEntity {
     public void setFull(boolean full) {
         this.full = full;
     }
+
+    public int getJoined() {
+        return joined;
+    }
+
+    public void setJoined(int joined) {
+        this.joined = joined;
+    }
 }
