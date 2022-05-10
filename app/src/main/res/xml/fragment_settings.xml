@@ -10,7 +10,7 @@
             app:key="notifications"
             app:title="@string/disable_notifications"
             app:summaryOn="You will no longer receive notifications"
-            app:summaryOff="You will receive notifications of events 2 hours before"/>
+            app:summaryOff="You will receive notifications when joining an event"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -18,18 +18,18 @@
             app:icon="@drawable/ic_baseline_edit_24">
 
         <EditTextPreference
-            app:key="@+id/edit_username"
-            app:title="@string/edit_username"
+            app:key="edit_username"
+            app:title="@string/username"
             app:summary="Click here to change your username"/>
 
-        <Preference
+        <EditTextPreference
             app:key="edit_biography"
-            app:title="@string/edit_bio"
-            app:summary="Click here to edit your biography"/>
+            app:title="@string/biography"
+            app:summary="Click here to edit your biography" />
 
         <Preference
             app:key="edit_languages"
-            app:title="@string/edit_languages"
+            app:title="@string/languages"
             app:summary="Click here to modify your languages"/>
             <!--app:entries="@array/entries"
             app:entryValues="@array/entry_values"-->
@@ -40,10 +40,13 @@
             app:summary="Click here to change the color of your avatar"/>
     </PreferenceCategory>
 
-    <PreferenceCategory
+    <PreferenceCategory>
+    </PreferenceCategory>
+
+    <Preference
         app:title="@string/change_language"
         app:icon="@drawable/ic_baseline_language_24">
-    </PreferenceCategory>
+    </Preference>
 
     <Preference
         app:icon="@drawable/ic_baseline_logout_24"

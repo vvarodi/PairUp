@@ -43,23 +43,10 @@
 
     <!-- Profile activity -->
     <string name="write_biography">Biography</string>
-    <string name="edit_biography">EDIT BIOGRAPHY</string>
     <string name="write_language_learning">Languages learning</string>
-    <string name="edit_languages">EDIT LANGUAGES</string>
     <string name="enrolled_events">Joined events</string>
     <string name="no_joined">No joined events. Join and have fun!</string>
 
-
-    <!-- Settings -->
-    <string name="notifications">Notifications</string>
-    <string name="disable_notifications">Disable notifications</string>
-    <string name="edit_profile">Edit profile</string>
-    <string name="edit_username">Username</string>
-    <string name="edit_bio">Biography</string>
-    <string name="edit_color">Avatar color</string>
-    <string name="change_language">Change app language</string>
-    <string name="logout">Log out</string>
-    <string name="about_us">About us</string>
 
 
     <string name="about_us_content">we are bla bla bla</string>
@@ -67,6 +54,21 @@
     <string name="developers_content">Viki, Tanvir, Ali...</string>
     <string name="youtube">Find us on YouTube</string>
     <string name="copyright">Copyright © 2022. All rights reserved.</string>
+
+    <!-- Settings -->
+    <string name="notifications">Notifications</string>
+    <string name="disable_notifications">Disable notifications</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="edit_username">Insert your new username</string>
+    <string name="biography">Biography</string>
+    <string name="edit_bio">Write your new biography (Max. 150 characters)</string>
+    <string name="languages">Languages</string>
+    <string name="edit_languages">Select new languages</string>
+    <string name="edit_color">Avatar color</string>
+    <string name="change_language">Change app language</string>
+    <string name="logout">Log out</string>
+    <string name="yes">Yes</string>
+    <string name="about_us">About us</string>
 
 
 </resources>

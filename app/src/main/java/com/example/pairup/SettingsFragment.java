@@ -2,14 +2,22 @@ package com.example.pairup;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
+
+import android.text.TextUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.UserEntity;
@@ -23,43 +31,64 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     TextView isLanguageSelected;
     ArrayList selectedLanguages;
     EditTextPreference username, biography;
-    Preference languages, avatar_color;
+    Preference languages, avatar_color, logout;
     int initial_color;
-    Preference logout;
+    UserEntity user;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.fragment_settings, rootKey);
-        /* Inflate the layout for this fragment
-        //return inflater.inflate(R.xml., container, false);*/
 
-        // Retrieve data passed as intent to PairUpActivity
-
+        db = AppDatabase.getInstance(requireActivity().getApplicationContext());
         SharedPreferences prefs = getContext().getSharedPreferences("prefs", getContext().MODE_PRIVATE);
         int id = prefs.getInt("ID", 0);
-        //UserEntity user = db.userDao().getCurrentUserById((long)id);
+        user = db.userDao().getCurrentUserById((long)id);
 
-        /*
-        username = findPreference("edit_username");
-        username.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+
+        // NOTIFICATIONS ON - OFF
+        SwitchPreferenceCompat notification = (SwitchPreferenceCompat) findPreference("notifications");
+        notification.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
-            public boolean onPreferenceClick(Preference preference) {
-                usernamePicker();
+            public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+                notification.setChecked(((boolean)newValue));
+
+                if (notification.isChecked()){
+                    prefs.edit().putBoolean("NOTIS", true).apply();
+                    Toast.makeText(getContext(), "Enable notifications", Toast.LENGTH_SHORT).show();
+                } else {
+                    prefs.edit().putBoolean("NOTIS", false).apply();
+                    Toast.makeText(getContext(), "Disable notifications", Toast.LENGTH_SHORT).show();
+                }
                 return true;
+            }
+        });
+
+
+        username = findPreference("edit_username");
+        username.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+
+                String new_user = (String) newValue;
+                db.userDao().updateUsername(user.getId_user(), new_user);
+                return false;
             }
         });
 
 
         biography = findPreference("edit_biography");
-        biography.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        biography.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
-            public boolean onPreferenceClick(Preference preference) {
-                biographyPicker();
-                return true;
+            public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+                String new_bio = (String) newValue;
+                if (new_bio.length() > 150){
+                    Toast.makeText(getContext(), "Too long", Toast.LENGTH_SHORT).show();
+                } else {
+                    db.userDao().updateBiography(user.getId_user(), new_bio);
+                }
+                return false;
             }
         });
-
-*/
 
         languages = findPreference("edit_languages");
         languages.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -79,8 +108,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-
-
         logout = findPreference("logout");
         logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -89,48 +116,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return true;
             }
         });
-
-    }
-
-    private void usernamePicker() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-        PairUpActivity activity = (PairUpActivity) getActivity();
-        String email = activity.getCurrentUser();
-        UserEntity user = db.userDao().getCurrentUser(email);
-
-        dialog.setTitle(getString(R.string.edit_username));
-        dialog.setMessage("Your current username is:" + user.getName() + "\n Insert your new username");
-        dialog.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                db.userDao().updateUsername(email, username.getText().toString());
-            }
-        });
-        dialog.show();
-    }
-
-    private void biographyPicker() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-        PairUpActivity activity = (PairUpActivity) getActivity();
-        String email = activity.getCurrentUser();
-        UserEntity user = db.userDao().getCurrentUser(email);
-
-        dialog.setTitle(getString(R.string.edit_bio));
-        dialog.setMessage("Your current biography is:" + user.getBiography() + "\n Write your new biography");
-        dialog.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //db.userDao().updateBiography(email, biography.getText().toString());
-            }
-        });
-        dialog.show();
     }
 
     public void languagePicker() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-        PairUpActivity activity = (PairUpActivity) getActivity();
-        String email = activity.getCurrentUser();
-        UserEntity user = db.userDao().getCurrentUser(email);
 
         dialog.setTitle(getString(R.string.edit_languages));
         selectedLanguages = new ArrayList();
@@ -153,30 +142,26 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         dialog.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int id) {
-                PairUpActivity activity = (PairUpActivity) getActivity();
-                String email = activity.getCurrentUser();
-                //db.userDao().updateLanguages(email, selectedLanguages.toString().substring(1, selectedLanguages.toString().length() - 1));
+                String string_languages = TextUtils.join(", ", selectedLanguages);
+                db.userDao().updateLanguages(user.getId_user(), string_languages);
             }
         });
         dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int id) {
                 dialogInterface.dismiss();
-
             }
         });
         dialog.show();
     }
 
     public void colorPicker() {
+        initial_color = Color.parseColor(user.getColor());
         AmbilWarnaDialog dialog = new AmbilWarnaDialog(getActivity(), initial_color , new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
-                //avatar.setColorFilter(Color.parseColor(user.getColor()));
                 initial_color = color;
-                //db.userDao().updateColor(email, "#" + Integer.toHexString(initial_color));
-                //sp.edit().putString("color",String.valueOf(color)).commit();
-                //avatar.setColorFilter(Color.parseColor(user.getColor()));
+                db.userDao().updateColor(user.getId_user(), "#" + Integer.toHexString(initial_color));
             }
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {
@@ -189,16 +174,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
         dialog.setTitle(getString(R.string.logout));
         dialog.setMessage("Are you sure you want to log out?");
-        dialog.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 SharedPreferences prefs = getContext().getSharedPreferences("prefs", getContext().MODE_PRIVATE);
                 prefs.edit().putBoolean("LOGGED", false).apply();
-
                 prefs.edit().putInt("ID", 0).apply();
                 getActivity().finish();
-
-            }
+                }
         });
         dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
