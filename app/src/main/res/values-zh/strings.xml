@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main Activity + Login Activity + SignUp Activity -->
+    <string name="app_name">PairUp</string>
+    <string name="login">登錄</string>
+    <string name="signup">報名</string>
+    <string name="logo"></string>
+    <string name="username">用戶名</string>
+    <string name="password">密碼</string>
+    <string name="repeat_password">重複輸入密碼</string>
+    <string name="email">電子郵件</string>
+    <string name="email_hint">email@domain.com</string>
+    <string name="default_color">"#FF9A72"</string>
+    <string name="error_empty">"不能為空"</string>
+    <string name="error_too_long">太長</string>
+    <string name="error_too_short">太短</string>
+    <string name="error_gmail">不合規電郵</string>
+    <string name="error_gmail_registered">郵箱已經註冊</string>
+    <string name="error_repeat_password">重複輸入密碼</string>
+    <string name="error_password_not_match">密碼不匹配</string>
+    <string name="invalid_credentials">無效證件</string>
+    <!-- Bottom Navigation Bar -->
+    <string name="settings">設置</string>
+    <string name="home">家</string>
+    <string name="profile">輪廓</string>
+    <!-- Host activity + CardView -->
+    <string name="choose">"選擇會議詳情"</string>
+    <string name="select_date">日期</string>
+    <string name="select_time">時間</string>
+    <string name="select_location">地點</string>
+    <string name="select_language">語言</string>
+    <string name="join">加入</string>
+
+    <!-- MapsActivity -->
+    <string name="click_location">點擊位置</string>
+    <string name="cancel">取消</string>
+    <string name="save">節省</string>
+
+    <!-- Profile activity -->
+    <string name="write_biography">傳</string>
+    <string name="edit_biography">編輯傳記</string>
+    <string name="write_language_learning">語言學習</string>
+    <string name="edit_languages">編輯語言</string>
+    <!-- Customize activity -->
+    <string name="customize">自定義您的個人資料</string>
+    <string name="skip">跳過</string>
+    <string name="choose_color">選擇頭像顏色</string>
+    <string name="save_color">保存顏色</string>
+    <string name="skipped">稍後編輯個人資料</string>
+
+    <!-- Settings -->
+    <string name="notifications">通知</string>
+    <string name="disable_notifications">禁用通知</string>
+    <string name="edit_profile">編輯個人資料</string>
+    <string name="edit_username">用戶名</string>
+    <string name="edit_bio">傳</string>
+    <string name="edit_color">頭像顏色</string>
+    <string name="change_language">更改應用語言</string>
+    <string name="logout">登出</string>
+    <string name="about_us">關於我們</string>
+    <string name="yes">是的</string>
+
+
+    <!-- About us -->
+    <string name="about_us_content">我們，PairUp 的開發者，目前正在攻讀數據科學學士學位和
+        工程。 PairUp 是我們對學習新語言的好奇心和對編碼的熱情的結果。我們相信
+        學習一門語言永遠不應該有壓力，而是一種有趣的體驗。還有什麼比學習更有趣的呢
+        或與更多人一起練習語言！我們鼓勵您選擇您想學習的語言和 PairUp！</string>
+    <string name="developers_title">開發者</string>
+    <string name="developers_content">Viktoriia, Alicia, Tanvir</string>
+    <string name="youtube">在 YouTube 上找到我們</string>
+    <string name="copyright">版權 ©2022. 版權所有</string>
+
+    <string name="enrolled_events">按語言過濾</string>
+    <string name="no_joined">沒有加入的活動。加入並玩得開心</string>
+    <string name="filter_by">按語言過濾</string>
+
+</resources>

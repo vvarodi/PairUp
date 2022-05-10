@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- Main Activity + Login Activity + SignUp Activity -->
+    <string name="app_name">PairUp</string>
+    <string name="login">Login</string>
+    <string name="signup">Iscriviti</string>
+    <string name="logo"></string>
+    <string name="username">Nome utente</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Ripeti la password</string>
+    <string name="email">E-mail</string>
+    <string name="email_hint">email@domain.com</string>
+    <string name="default_color">"#FF9A72"</string>
+    <string name="error_empty">"Non può essere vuoto"</string>
+    <string name="error_too_long">Troppo lungo</string>
+    <string name="error_too_short">Troppo corto</string>
+    <string name="error_gmail">E-mail non valido</string>
+    <string name="error_gmail_registered">E-mail già registrata</string>
+    <string name="error_repeat_password">Ripeti la password</string>
+    <string name="error_password_not_match">Le passwords non corrispondono</string>
+    <string name="invalid_credentials">Credenziali non valide</string>
+    <!-- Bottom Navigation Bar -->
+    <string name="settings">Impostazioni</string>
+    <string name="home">Inizio</string>
+    <string name="profile">Profilo</string>
+    <!-- Host activity + CardView -->
+    <string name="choose">"Scegli i dettagli della riunione"</string>
+    <string name="select_date">Data</string>
+    <string name="select_time">Tempo</string>
+    <string name="select_location">Posizione</string>
+    <string name="select_language">Lingua</string>
+    <string name="join">Giuntura</string>
+
+    <!-- MapsActivity -->
+    <string name="click_location">Fare clic su Posizione</string>
+    <string name="cancel">Annulla</string>
+    <string name="save">Save</string>
+
+    <!-- Profile activity -->
+    <string name="write_biography">Biografia</string>
+    <string name="edit_biography">MODIFICA BIOGRAFIA</string>
+    <string name="write_language_learning">Apprendimento delle lingue</string>
+    <string name="edit_languages">MODIFICA LINGUE</string>
+    <!-- Customize activity -->
+    <string name="customize">Personalizza il tuo profilo</string>
+    <string name="skip">SALTA</string>
+    <string name="choose_color">SCEGLI IL COLORE DELLAVATAR</string>
+    <string name="save_color">SALVA COLORE</string>
+    <string name="skipped">Editar perfil più tardi</string>
+
+    <!-- Settings -->
+    <string name="notifications">Notifiche</string>
+    <string name="disable_notifications">Disabilita le notifiche</string>
+    <string name="edit_profile">Modifica Profilo</string>
+    <string name="edit_username">Nome utente</string>
+    <string name="edit_bio">Biografia</string>
+    <string name="edit_color">Colore avatar</string>
+    <string name="change_language">Cambia la lingua dellapp</string>
+    <string name="logout">Disconnettersi</string>
+    <string name="about_us">Chi siamo</string>
+    <string name="yes">Sì</string>
+
+
+    <!-- About us -->
+    <string name="about_us_content">Noi, gli sviluppatori di PairUp, stiamo attualmente conseguendo una laurea in scienza dei dati e
+        Ingegneria. PairUp è il risultato della nostra curiosità di imparare nuove lingue e della nostra passione per il coding. noi crediamo
+        che lapprendimento di una lingua non dovrebbe mai essere stressante, ma piuttosto unesperienza divertente. E cosa può esserci di più divertente dellapprendimento
+        o praticare una lingua con più persone! Ti invitiamo a scegliere la lingua che vuoi imparare e ad accoppiare!</string>
+    <string name="developers_title">Sviluppatori</string>
+    <string name="developers_content">Viktoriia, Alicia, Tanvir</string>
+    <string name="youtube">Trovaci su YouTube</string>
+    <string name="copyright">Diritto dautore ©2022. Tutti i diritti riservati</string>
+
+    <string name="enrolled_events">Joined events</string>
+    <string name="no_joined">No joined events. Join and have fun!</string>
+    <string name="filter_by">FILTER BY LANGUAGE</string>
+
+</resources>

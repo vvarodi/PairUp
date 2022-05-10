@@ -24,12 +24,12 @@
 
         <EditTextPreference
             app:key="edit_biography"
-            app:title="@string/biography"
+            app:title="@string/write_biography"
             app:summary="Click here to edit your biography" />
 
         <Preference
             app:key="edit_languages"
-            app:title="@string/languages"
+            app:title="@string/write_language_learning"
             app:summary="Click here to modify your languages"/>
             <!--app:entries="@array/entries"
             app:entryValues="@array/entry_values"-->
@@ -45,6 +45,7 @@
 
     <Preference
         app:title="@string/change_language"
+        app:key="app_language"
         app:icon="@drawable/ic_baseline_language_24">
     </Preference>
 

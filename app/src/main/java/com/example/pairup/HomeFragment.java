@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment {
                 filtered = db.reservationDao().getEventsWithUsersByLanguage("%"+selectedLanguages+"%");
 
                 //Toast.makeText(getContext(), filtered.get(0).event.language, Toast.LENGTH_LONG);
-                filter.setText("Filter by language: " + selectedLanguages);
+                filter.setText(getString(R.string.filter_by)+ ": "+selectedLanguages);
                 if (filtered.size() == 0) {
                     recyclerView.setVisibility(View.GONE);
                     empty_txt.setVisibility(View.VISIBLE);

@@ -17,7 +17,7 @@
             android:layout_height="60dp"
             android:backgroundTint="@color/main_skin"
             android:drawableLeft="@drawable/ic_baseline_translate_24"
-            android:text="Filter by language"
+            android:text="@string/filter_by"
             android:textColor="@color/main_rosa_dark"
             android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"

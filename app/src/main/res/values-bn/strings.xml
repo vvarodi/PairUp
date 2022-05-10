@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main Activity + Login Activity + SignUp Activity -->
+    <string name="app_name">PairUp</string>
+    <string name="login">প্রবেশ করুন</string>
+    <string name="signup">নিবন্ধন করুন</string>
+    <string name="logo"></string>
+    <string name="username">ব্যবহারকারীর নাম</string>
+    <string name="password">পাসওয়ার্ড</string>
+    <string name="repeat_password">পুনরাবৃত্তি পাসওয়ার্ড</string>
+    <string name="email">ইমেইল</string>
+    <string name="email_hint">email@domain.com</string>
+    <string name="default_color">"#FF9A72"</string>
+    <string name="error_empty">"খালি হতে পারেনা"</string>
+    <string name="error_too_long">অনেক লম্বা</string>
+    <string name="error_too_short">খুবই ছোট</string>
+    <string name="error_gmail">অবৈধ ইমেল</string>
+    <string name="error_gmail_registered">ইমেলটি ইতিমধ্যেই নিবন্ধন</string>
+    <string name="error_repeat_password">পুনরাবৃত্তি পাসওয়ার্ড</string>
+    <string name="error_password_not_match">পাসওয়ার্ড মিলছে না</string>
+    <string name="invalid_credentials">Iঅবৈধ প্রশংসাপত্র</string>
+    <!-- Bottom Navigation Bar -->
+    <string name="settings">সেটিংস</string>
+    <string name="home">বাড়ি</string>
+    <string name="profile">প্রোফাইল</string>
+    <!-- Host activity + CardView -->
+    <string name="choose">"মিটিং বিশদ নির্বাচন করুন"</string>
+    <string name="select_date">তারিখ</string>
+    <string name="select_time">সময়</string>
+    <string name="select_location">অবস্থান</string>
+    <string name="select_language">ভাষা</string>
+    <string name="join">যোগদান করুন</string>
+
+    <!-- MapsActivity -->
+    <string name="click_location">অবস্থান ক্লিক করুন</string>
+    <string name="cancel">বাতিল করুন</string>
+    <string name="save">সংরক্ষণ</string>
+
+    <!-- Profile activity -->
+    <string name="write_biography">জীবনী</string>
+    <string name="edit_biography">জীবনী সম্পাদনা করুন</string>
+    <string name="write_language_learning">ভাষা শেখা</string>
+    <string name="edit_languages">ভাষাগুলি সম্পাদনা করুন</string>
+    <!-- Customize activity -->
+    <string name="customize">আপনার প্রোফাইল কাস্টমাইজ করুন</string>
+    <string name="skip">এড়িয়ে যান</string>
+    <string name="choose_color">অবতার রঙ চয়ন করুন</string>
+    <string name="save_color">রঙ সংরক্ষণ করুন</string>
+    <string name="skipped">পরে প্রোফাইল সম্পাদনা করুন</string>
+
+    <!-- Settings -->
+    <string name="notifications">বিজ্ঞপ্তি</string>
+    <string name="disable_notifications">বিজ্ঞপ্তিগুলি অক্ষম করুন</string>
+    <string name="edit_profile">জীবন বৃত্তান্ত সম্পাদনা</string>
+    <string name="edit_username">ব্যবহারকারীর নাম</string>
+    <string name="edit_bio">জীবনী</string>
+    <string name="edit_color">অবতার রঙ</string>
+    <string name="change_language">অ্যাপের ভাষা পরিবর্তন করুন</string>
+    <string name="logout">প্রস্থান</string>
+    <string name="about_us">আমাদের সম্পর্কে</string>
+    <string name="yes">হ্যাঁ</string>
+
+
+    <!-- About us -->
+    <string name="about_us_content">আমরা, PairUp-এর বিকাশকারীরা, বর্তমানে ডেটা সায়েন্সে স্নাতক ডিগ্রি নিচ্ছি এবং
+        প্রকৌশল. PairUp হল আমাদের নতুন ভাষা শেখার কৌতূহল এবং কোডিং এর প্রতি আমাদের আবেগের ফলাফল। আমরা বিশ্বাস করি
+        যে একটি ভাষা শেখা কখনই চাপযুক্ত হওয়া উচিত নয়, বরং একটি মজার অভিজ্ঞতা। আর শেখার চেয়ে মজার আর কি হতে পারে
+        বা আরও লোকের সাথে একটি ভাষা অনুশীলন করা! আপনি যে ভাষা শিখতে চান এবং পেয়ারআপ করতে চান তা বেছে নিতে আমরা আপনাকে উৎসাহিত করি!</string>
+    <string name="developers_title">বিকাশকারীরা</string>
+    <string name="developers_content">Viktoriia, Alicia, Tanvir</string>
+    <string name="youtube">YouTube আমাদের খুঁজুন</string>
+    <string name="copyright">কপিরাইট ©2022. সমস্ত অধিকার সংরক্ষিত</string>
+
+    <string name="enrolled_events">Joined events</string>
+    <string name="no_joined">No joined events. Join and have fun!</string>
+    <string name="filter_by">FILTER BY LANGUAGE</string>
+
+
+</resources>

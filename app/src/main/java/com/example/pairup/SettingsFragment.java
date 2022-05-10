@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -23,6 +24,7 @@ import com.example.pairup.db.AppDatabase;
 import com.example.pairup.db.UserEntity;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -31,7 +33,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     TextView isLanguageSelected;
     ArrayList selectedLanguages;
     EditTextPreference username, biography;
-    Preference languages, avatar_color, logout;
+    Preference languages, avatar_color, logout, app_language;
     int initial_color;
     UserEntity user;
 
@@ -95,6 +97,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 languagePicker();
+                return true;
+            }
+        });
+
+        app_language = findPreference("app_language");
+        app_language.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                appLanguagePicker();
                 return true;
             }
         });
@@ -191,6 +202,55 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         dialog.show();
     }
 
+    public void appLanguagePicker() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setTitle("Choose App Language");
+
+        String[] languages = {"English", "Español", "বাংলা", "中國人", "Italiano", "Deutsch"};
+
+        dialog.setSingleChoiceItems(languages, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0){
+                    setLocale("en");
+                    getActivity().recreate();
+                }
+                if (i == 1){
+                    setLocale("es");
+                    getActivity().recreate();
+                }
+                if (i == 2){
+                    setLocale("bn");
+                    getActivity().recreate();
+                }
+                if (i == 3){
+                    setLocale("zh");
+                    getActivity().recreate();
+                }
+                if (i == 4){
+                    setLocale("it");
+                    getActivity().recreate();
+                }
+                if (i == 5){
+                    setLocale("de");
+                    getActivity().recreate();
+                }
+            }
+        });
+        dialog.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int id) {
+
+            }
+        });
+        dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int id) {
+                dialogInterface.dismiss();
+            }
+        });
+        dialog.show();
+    }
 
     // https://stackoverflow.com/questions/28389841/change-actionbar-title-using-fragments
     public void onResume() {
@@ -198,6 +258,26 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ((PairUpActivity) getActivity())
                 .setActionBarTitle("Settings");
 
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getActivity().getResources().updateConfiguration(config,getActivity().getBaseContext().getResources().getDisplayMetrics());
+
+        //save data to shared preferences
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("prefs", getContext().MODE_PRIVATE).edit();
+        editor.putString("LANG", lang);
+        editor.apply();
+    }
+
+    // load languages saved in shared preferences
+    public  void loadLocale() {
+        SharedPreferences prefs = getContext().getSharedPreferences("Settings", getContext().MODE_PRIVATE);
+        String language = prefs.getString("LANG", "");
+        setLocale(language);
     }
 }
 
