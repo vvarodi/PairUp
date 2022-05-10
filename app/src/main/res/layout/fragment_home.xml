@@ -11,15 +11,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <Button
+            android:id="@+id/filter"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/main_skin"
+            android:drawableLeft="@drawable/ic_baseline_translate_24"
+            android:text="Filter by language"
+            android:textColor="@color/main_rosa_dark"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/main_rosa_dark"
+            app:strokeWidth="1dp" />
+
+        <LinearLayout
+            android:id="@+id/empty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No events. Host a new event!"/>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter"
             tools:ignore="MissingConstraints">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"/>
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
         </ScrollView>
 
@@ -31,7 +66,7 @@
             android:layout_marginBottom="16dp"
             android:clickable="true"
             android:src="@drawable/ic_baseline_add_24"
-            app:backgroundTint="@color/main_rosa"
+            app:backgroundTint="@color/main_rosa_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

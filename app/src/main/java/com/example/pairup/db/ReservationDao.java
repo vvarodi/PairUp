@@ -24,6 +24,10 @@ public interface ReservationDao {
     public List<EventWithUsers> getEventsWithUsers();
 
     @Transaction
+    @Query("SELECT * FROM event WHERE language like :lang")
+    public List<EventWithUsers> getEventsWithUsersByLanguage(String lang);
+
+    @Transaction
     @Query("SELECT * FROM user where id_user=(:id)")
     public List<UserWithEvent> getUsersWithEvents(long id);
 

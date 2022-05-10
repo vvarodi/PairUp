@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnPoiClickListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnPoiClickListener{
 
     private TextView text_clicked;
     private GoogleMap myMap;
@@ -45,6 +45,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps);
 
         text_clicked = (TextView)findViewById(R.id.text_location);
+
+        if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -102,10 +107,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.e(this.getLocalClassName(), "Exception getting location", e);
         }
 
+        Toast.makeText(this, "Clicked: " + poi.name, Toast.LENGTH_SHORT)
+                .show();
+        /*
         Toast.makeText(this, "Clicked: " + poi.name + "\nPlace ID:" + poi.placeId + "\nLatitude:" +
                 poi.latLng.latitude + " Longitude:" + poi.latLng.longitude, Toast.LENGTH_SHORT)
                 .show();
-
+        */
         text_clicked.setText(result);
         LatLng clicked = new LatLng(poi.latLng.latitude, poi.latLng.longitude);
         myMap.addMarker(new MarkerOptions().position(clicked));
