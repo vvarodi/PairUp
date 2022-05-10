@@ -64,7 +64,8 @@ public class HostActivity extends AppCompatActivity {
 
         ImageView profile1 = (ImageView) findViewById(R.id.profile1);
         profile1.setColorFilter(Color.parseColor(user.getColor()));
-
+        TextView profile1_name = findViewById(R.id.profile1_name);
+        profile1_name.setText(user.getName());
 
 
         Button saveButton = (Button)findViewById(R.id.button_join);
@@ -90,7 +91,6 @@ public class HostActivity extends AppCompatActivity {
                         hide1.setVisibility(View.VISIBLE);
                         hide2.setVisibility(View.VISIBLE);
                     }
-                    new_event.setMembers(member);
                 }
             }
         });
@@ -105,6 +105,7 @@ public class HostActivity extends AppCompatActivity {
         } else {
             new_event.setFull(false);
             new_event.joined = 1;
+            new_event.setMembers(member);
             long inserted_event = db.eventDao().NewEvent(new_event);
             EventEntity inserted = db.eventDao().getEvent(inserted_event);
 

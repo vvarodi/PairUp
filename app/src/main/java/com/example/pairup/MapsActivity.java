@@ -52,6 +52,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         findViewById(R.id.save).setOnClickListener(view -> saveAndFinish());
+        findViewById(R.id.cancel).setOnClickListener(view -> close());
+    }
+
+    private void close() {
+        finish();
     }
 
     private void saveAndFinish() {

@@ -33,7 +33,7 @@ public class EventEntity {
     @ColumnInfo(name="joined")
     public int joined;
 
-    @ColumnInfo(name="full")
+    @ColumnInfo(name="complete")
     public boolean full;
 
     public EventEntity() {

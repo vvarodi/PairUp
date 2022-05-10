@@ -19,4 +19,10 @@ public interface EventDao {
     @Query("SELECT * FROM event ORDER BY substr(day,7,4)||substr(day,4,2)||substr(day,1,2)")
     List<EventEntity> getAllEvents();
 
+    @Query ("UPDATE event SET complete=:new_full where id_event=(:id)")
+    void updateFull(boolean new_full, long id);
+
+    @Query ("UPDATE event SET joined=:new_joined where id_event=(:id)")
+    void updateJoined(Integer new_joined, long id);
+
 }

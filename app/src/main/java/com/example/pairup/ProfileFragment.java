@@ -18,10 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.pairup.db.AppDatabase;
-import com.example.pairup.db.EventEntity;
 import com.example.pairup.db.EventWithUsers;
 import com.example.pairup.db.UserEntity;
-import com.example.pairup.db.UserWithEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +39,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         //db = AppDatabase.getInstance(getActivity());
-        db = AppDatabase.getInstance(getActivity().getApplicationContext());
+        db = AppDatabase.getInstance(requireActivity().getApplicationContext());
 
         // Retrieve current user information from shared preferences
         SharedPreferences prefs = getContext().getSharedPreferences("prefs", getContext().MODE_PRIVATE);
@@ -86,7 +84,7 @@ public class ProfileFragment extends Fragment {
      */
     private void showJoinedEvents(View view){
         //
-        List<EventWithUsers> show = new ArrayList<EventWithUsers>();
+        List<EventWithUsers> show = new ArrayList<>();
         List<EventWithUsers> all = db.reservationDao().getEventsWithUsers();
 
         for (int i=0; i < all.size(); i++){
@@ -96,7 +94,6 @@ public class ProfileFragment extends Fragment {
                 }
             }
         }
-
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_profile);
         LinearLayout empty_txt = view.findViewById(R.id.empty);

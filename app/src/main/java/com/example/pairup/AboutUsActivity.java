@@ -21,7 +21,7 @@ public class AboutUsActivity extends AppCompatActivity {
         youtube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                webView.setVisibility(View.VISIBLE);
+                //webView.setVisibility(View.VISIBLE);
                 webView.loadUrl("https://www.youtube.com/channel/UCzaG4o-tWgyOg08yo19UgcQ");
             }
         });

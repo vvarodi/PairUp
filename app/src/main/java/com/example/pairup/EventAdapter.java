@@ -89,21 +89,47 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             p4t = itemView.findViewById(R.id.profile4_name);
         }
 
-            void bindData(final EventWithUsers item) {
+        void bindData(final EventWithUsers item) {
             date.setText(item.event.day);
             time.setText(item.event.time);
             location.setText(item.event.location);
             language.setText(item.event.language);
 
+            // to inflate in HostActivity correctly
             if (item.users.size() > 0){
                 p1.setColorFilter(Color.parseColor(item.users.get(0).color));
                 p1t.setText(item.users.get(0).name);
             }
 
-
             if (item.event.members == 2){
                 h1.setVisibility(View.GONE);
                 h2.setVisibility(View.GONE);
+
+                if(item.event.full){
+                    p2.setColorFilter(Color.parseColor(item.users.get(1).color));
+                    p2t.setText(item.users.get(1).name);
+                }
+            }
+            if (item.event.members == 4){
+                if (item.event.joined == 2){
+                    p2.setColorFilter(Color.parseColor(item.users.get(1).color));
+                    p2t.setText(item.users.get(1).name);
+                }
+                if (item.event.joined == 3){
+                    p2.setColorFilter(Color.parseColor(item.users.get(1).color));
+                    p2t.setText(item.users.get(1).name);
+                    p3.setColorFilter(Color.parseColor(item.users.get(2).color));
+                    p3t.setText(item.users.get(2).name);
+                }
+                if (item.event.joined == 4){
+                    p2.setColorFilter(Color.parseColor(item.users.get(1).color));
+                    p2t.setText(item.users.get(1).name);
+                    p3.setColorFilter(Color.parseColor(item.users.get(2).color));
+                    p3t.setText(item.users.get(2).name);
+                    p4.setColorFilter(Color.parseColor(item.users.get(3).color));
+                    p4t.setText(item.users.get(3).name);
+                }
+
             }
 
 
@@ -130,11 +156,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             join.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
+                    SharedPreferences prefs = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+                    prefs.edit().putInt("ID_EVENT", (int)item.event.getId_event()).apply();
                     Intent intent = new Intent(context, EventInfoActivity.class);
                     context.startActivity(intent);
-
                 }
             });
         }
