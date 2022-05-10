@@ -99,6 +99,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             if (item.users.size() > 0){
                 p1.setColorFilter(Color.parseColor(item.users.get(0).color));
                 p1t.setText(item.users.get(0).name);
+                p1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        SharedPreferences prefs = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+                        prefs.edit().putInt("ID_VIEW", (int)item.users.get(0).getId_user()).apply();
+                        Intent intent = new Intent(context, UserActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
             }
 
             if (item.event.members == 2){
@@ -108,26 +117,89 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                 if(item.event.full){
                     p2.setColorFilter(Color.parseColor(item.users.get(1).color));
                     p2t.setText(item.users.get(1).name);
+                    p2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences prefs = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+                            prefs.edit().putInt("ID_VIEW", (int)item.users.get(1).getId_user()).apply();
+                            Intent intent = new Intent(context, UserActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
                 }
             }
             if (item.event.members == 4){
                 if (item.event.joined == 2){
                     p2.setColorFilter(Color.parseColor(item.users.get(1).color));
                     p2t.setText(item.users.get(1).name);
+                    p2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences prefs = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+                            prefs.edit().putInt("ID_VIEW", (int)item.users.get(1).getId_user()).apply();
+                            Intent intent = new Intent(context, UserActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
                 }
                 if (item.event.joined == 3){
                     p2.setColorFilter(Color.parseColor(item.users.get(1).color));
                     p2t.setText(item.users.get(1).name);
+                    p2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences prefs = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+                            prefs.edit().putInt("ID_VIEW", (int)item.users.get(1).getId_user()).apply();
+                            Intent intent = new Intent(context, UserActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
                     p3.setColorFilter(Color.parseColor(item.users.get(2).color));
                     p3t.setText(item.users.get(2).name);
+                    p3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences prefs = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+                            prefs.edit().putInt("ID_VIEW", (int)item.users.get(2).getId_user()).apply();
+                            Intent intent = new Intent(context, UserActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
                 }
                 if (item.event.joined == 4){
                     p2.setColorFilter(Color.parseColor(item.users.get(1).color));
                     p2t.setText(item.users.get(1).name);
+                    p2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences prefs = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+                            prefs.edit().putInt("ID_VIEW", (int)item.users.get(1).getId_user()).apply();
+                            Intent intent = new Intent(context, UserActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
                     p3.setColorFilter(Color.parseColor(item.users.get(2).color));
                     p3t.setText(item.users.get(2).name);
+                    p3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences prefs = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+                            prefs.edit().putInt("ID_VIEW", (int)item.users.get(2).getId_user()).apply();
+                            Intent intent = new Intent(context, UserActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
                     p4.setColorFilter(Color.parseColor(item.users.get(3).color));
                     p4t.setText(item.users.get(3).name);
+                    p4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences prefs = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+                            prefs.edit().putInt("ID_VIEW", (int)item.users.get(3).getId_user()).apply();
+                            Intent intent = new Intent(context, UserActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
                 }
 
             }
